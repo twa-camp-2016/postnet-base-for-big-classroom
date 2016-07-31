@@ -2,6 +2,8 @@
  * Created by ritter on 16-7-29.
  */
 
+"use strict"
+
 const createAction = require('./createAction');
 
 const name = 'init';

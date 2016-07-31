@@ -3,56 +3,55 @@
  */
 "use strict";
 
-const fn = require("../../transfomer/postToBarcode");
+const PostToBarcode = require("../../transfomer/postToBarcode");
 
-describe('postToBarcode', function () {
-    it('should return barcode', function () {
-        let tags = '12345';
-        let expected = '12345=|:::||::|:|::||::|::|:|:|::|:|:|\n5';
-        let result = fn.postToBarcode(tags);
+describe('postToBartags', function () {
+    let postToBarcode;
 
-        expect(result).toEqual(expected)
+    beforeEach(()=>{
+        postToBarcode = new PostToBarcode()
     });
-});
 
-describe('isValidation', function () {
-    it('should return the tags ', function () {
-        let tags = '45056-1234';
-        let expected = '45056-1234';
-        let result = fn.isValidation(tags);
-
-        expect(result).toEqual(expected)
+    it("should return barcode 1 ", function () {
+        let tags = "45056-1234";
+        let result = postToBarcode.changePost(tags);
+        let expected = "45056-1234=|:|::|:|:|:||::::|:|::||:::::||::|:|::||::|::|||:::|\n0";
+        expect(result).toEqual(expected);
     });
-});
 
-describe('fomateCode', function () {
-    it('should return the formatedCode', function () {
-        let tags = '45056-1234';
-        let expected = [4, 5, 0, 5, 6, 1, 2, 3, 4];
-        let result = fn.fomateCode(tags);
-
-        expect(result).toEqual(expected)
+    it("should return barcode 2 ", function () {
+        let tags = "450-561234";
+        let result = postToBarcode.changePost(tags);
+        let expected = "error";
+        expect(result).toEqual(expected);
     });
-});
 
-describe('calculateValidaion', function () {
-    it('should return CD', function () {
-        let result = [4, 5, 0, 5, 6, 1, 2, 3, 4];
-        let expected = 0;
-        let reword = fn.calculateValidation(result);
-
-        expect(reword).toEqual(expected)
+    it("should return barcode 3 ", function () {
+        let tags = "450";
+        let result = postToBarcode.changePost(tags);
+        let expected = "error";
+        expect(result).toEqual(expected);
     });
-});
 
-describe('getBarcodes', function () {
-    it('should return barcodes', function () {
-        let allBarcodes = ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
-        let result = [4, 5, 0, 5, 6, 1, 2, 3, 4];
-        let valite = 0;
-        let expected = '|:|::|:|:|:||::::|:|::||:::::||::|:|::||::|::|||:::|';
-        let reword = fn.getBarcodes(result, valite, allBarcodes);
-
-        expect(reword).toEqual(expected)
+    it("should return barcode 4 ", function () {
+        let tags = "45*";
+        let result = postToBarcode.changePost(tags);
+        let expected = "error";
+        expect(result).toEqual(expected);
     });
+
+    it("should return barcode 5 ", function () {
+        let tags = "450561234";
+        let result = postToBarcode.changePost(tags);
+        let expected = "450561234=|:|::|:|:|:||::::|:|::||:::::||::|:|::||::|::|||:::|\n0";
+        expect(result).toEqual(expected);
+    });
+
+    it("should return barcode 6 ", function () {
+        let tags = "45056";
+        let result = postToBarcode.changePost(tags);
+        let expected = "45056=|:|::|:|:|:||::::|:|::||::||:::|\n0";
+        expect(result).toEqual(expected);
+    });
+
 });

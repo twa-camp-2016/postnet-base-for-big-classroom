@@ -45,7 +45,7 @@ describe('postAction', function () {
        expect(result).toEqual(expected)
    });
 
-    it('test postAction.doAction should output result and return inputPost', function () {
+    it('test postAction.doAction should output result and return inputPost 1 ', function () {
         let cmd = '12345';
         let expected = `12345=|:::||::|:|::||::|::|:|:|::|:|:|
 5
@@ -57,7 +57,7 @@ describe('postAction', function () {
         expect(console.log).toHaveBeenCalledWith(expected)
     });
 
-    it('test postAction.doAction should output error and return inputPost', function () {
+    it('test postAction.doAction should output error and return inputPost 2 ', function () {
         let cmd = '1234';
         let expected =`error
 
@@ -78,7 +78,7 @@ describe('barcodeAction', function () {
        expect(result).toEqual(expected)
    });
 
-    it('test barcodeAtcion.doAction should output result and return inputBarcode', function () {
+    it('test barcodeAtcion.doAction should output result and return inputBarcode 1 ', function () {
         let cmd = '| :::|| ::|:| ::||: :|::| :|:|: :|:|: |';
         let expected = 'inputBarcode';
         let result = barcodeAction.doAction(cmd);
@@ -86,7 +86,7 @@ describe('barcodeAction', function () {
         expect(result).toEqual(expected)
     });
 
-    it('test barcodeAction.doAction should output result and return inputBarcode', function () {
+    it('test barcodeAction.doAction should output result and return inputBarcode 2 ', function () {
         let cmd = '| :::|| ::|:| ::||: :|::| :|:|: :|:|: |';
         let expected = `12345
 `;
@@ -96,7 +96,7 @@ describe('barcodeAction', function () {
         expect(console.log).toHaveBeenCalledWith(expected)
     });
 
-    it('test barcodeAction.doAction should output error and return inputBarcode', function () {
+    it('test barcodeAction.doAction should output error and return inputBarcode 3 ', function () {
         let cmd = '1234';
         let expected =`error
 `;
