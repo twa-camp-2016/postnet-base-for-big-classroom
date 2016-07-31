@@ -6,7 +6,7 @@
 
 //noinspection JSUnresolvedFunction
 
-const obj = require('./src/posnet.js');
+const link = require('./src/posnet.js');
 
 let currentActionName = 'init';
 
@@ -42,11 +42,11 @@ Please input barcode(press 'q' to quit)`.trim(),
     doAction(cmd){
         switch (cmd) {
             case 'q':
-                currentActionName='init';
+                currentActionName = 'init';
                 break;
             default:
                 console.log('the barcode:' + cmd);
-                console.log('the postcodes is:' + obj.covertToZipCodes(cmd));
+                console.log('the postcodes is:' + link.test1.covertToZipCodes(cmd));
         }
     }
 }, {
@@ -56,11 +56,11 @@ Please input postcode(press 'q' to quit)`.trim(),
     doAction(cmd){
         switch (cmd) {
             case 'q':
-                currentActionName='init';
+                currentActionName = 'init';
                 break;
             default:
-            console.log('the postcode:' + cmd);
-            console.log('the barcodes is:' + obj.covertToBarcode(cmd));
+                console.log('the postcode:' + cmd);
+                console.log('the barcodes is:' + link.test2.covertToBarcode(cmd));
         }
     }
 }];
