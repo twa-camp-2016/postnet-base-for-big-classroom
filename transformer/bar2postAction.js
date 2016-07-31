@@ -7,9 +7,13 @@
 const barcode = require('./barcodeTopost');
 const Action = require('./creatAction');
 
-let bar2post = new Action('barcode2Post', '请输入条码,退出请按Q', bar2postAction);
+function Bar2Post(name, help) {
+    Action.call(this, name, help);
+}
 
-function bar2postAction(cmd) {
+Bar2Post.prototype = new Action();
+
+Bar2Post.prototype.doAction = function (cmd) {
     switch (cmd) {
         case 'q':
             return 'init';
@@ -17,5 +21,9 @@ function bar2postAction(cmd) {
             console.log(barcode.barcodeToPostCode(cmd));
             return 'barcode2Post';
     }
-}
+};
+
+let bar2post = new Bar2Post('barcode2Post', '请输入条码,退出请按q');
 module.exports = bar2post;
+
+

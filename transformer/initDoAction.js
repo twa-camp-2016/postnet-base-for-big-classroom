@@ -3,9 +3,13 @@
  */
 
 const Action = require('./creatAction');
-const repl = require('repl');
-let initDoAction = new Action('init', "初始化界面:\n1-postToBarcode\n2-barcodeToPostCode\n3-退出\n请输入您的选择", initAction);
-function initAction(cmd) {
+function Init(name, help) {
+    Action.call(this, name, help);
+}
+
+Init.prototype = new Action();
+
+Init.prototype.doAction = function (cmd) {
     switch (cmd) {
         case '1':
             return 'post2Barcode';
@@ -19,7 +23,8 @@ function initAction(cmd) {
             console.log("无效的输入");
             return 'init'
     }
+};
 
-}
+let initDoAction = new Init('init', '初始化界面:\n1-postToBarcode\n2-barcodeToPostCode\n3-退出\n请输入您的选择');
 
 module.exports = initDoAction;
