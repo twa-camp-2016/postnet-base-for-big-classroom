@@ -6,6 +6,16 @@
 /*global module*/
 class postToBar {
 
+    static zipCodeToBarCode(zipCode) {
+        if (!this.checkZip(zipCode)) {
+            return undefined;
+        }
+        let zips = this.deleteSymbol(zipCode);
+        let list = this.loadList();
+        let zipCodes = this.addDigit(zips);
+        let bar = this.getBar(list, zipCodes);
+        return this.getBarCode(bar);
+    }
 
     static checkLegalSymbol(zipCode) {
         let zipCodes = zipCode.split("");
@@ -84,20 +94,24 @@ class postToBar {
 
 
 
-    static zipCodeToBarCode(zipCode) {
-        if (!checkZip(zipCode)) {
-            return undefined;
-        }
-        let zips = deleteSymbol(zipCode);
-        let list = loadList();
-        let zipCodes = addDigit(zips);
-        let bar = getBar(list, zipCodes);
-        return getBarCode(bar);
-    }
+
+
 }
 
 
 class barToPost {
+
+    static barCodeToZipCode(barcode) {
+        let format = this.judgeIfLegal(barcode);
+        if (!format) {
+            return false;
+        }
+        let barcodes = this.splBarCode(barcode);
+        let clickList = this.getClickList();
+        let zipcodes = this.chargeType(barcodes, clickList);
+        let bool = this.checkDigit(zipcodes);
+        return this.chargeZipCode(zipcodes, bool);
+    }
 
 
     static  judgeIfLegal(barcode) {
@@ -114,13 +128,9 @@ class barToPost {
         })
     }
 
-
-
     static checkFrame(barcode) {
         return barcode.startsWith("| ") && barcode.endsWith(" |");
     }
-
-
 
     static checkBarCodeLength(barcode) {
         let arr = barcode.split(" ");
@@ -129,8 +139,6 @@ class barToPost {
             return item.length !== 5;
         })
     }
-
-
 
     static getClickList() {
         return [
@@ -148,16 +156,12 @@ class barToPost {
 
     }
 
-
-
     static splBarCode(barcode) {
 
         let arr = barcode.split(" ");
         return arr.splice(1, arr.length - 2);
 
     }
-
-
 
     static chargeType(barcodes, clickList) {
         return barcodes.map(bar=> {
@@ -167,16 +171,12 @@ class barToPost {
         });
     }
 
-
-
     static checkDigit(zipCodes) {
         let sum = zipCodes.reduce((cur, code)=> {
             return cur + code;
         });
         return sum % 10 === 0;
     }
-
-
 
    static chargeZipCode(zipCodes, bool) {
         let string = "";
@@ -198,19 +198,6 @@ class barToPost {
         return string;
     }
 
-
-
-    static barCodeToZipCode(barcode) {
-        let format = judgeIfLegal(barcode);
-        if (!format) {
-            return false;
-        }
-        let barcodes = splBarCode(barcode);
-        let clickList = getClickList();
-        let zipcodes = chargeType(barcodes, clickList);
-        let bool = checkDigit(zipcodes);
-        return chargeZipCode(zipcodes, bool);
-    }
 }
 
 module.exports = {
