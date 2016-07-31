@@ -9,6 +9,7 @@ const barcodeTurnPostcodePage = require("../action/barcodeTurnPostcodePage");
 const changePage = require("../action/postcodeTurnBarcodePage");
 const postcodeTurnBarcodePage = require("../action/postcodeTurnBarcodePage");
 const repl = require('repl');
+
 function switchRouter(context, done) {
     let router = actions.find(item => item.name === currentAction);
     let result = router.doAction(context.cmd);

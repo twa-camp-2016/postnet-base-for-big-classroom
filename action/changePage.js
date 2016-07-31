@@ -11,9 +11,9 @@ class changePage {
     doAction(cmd) {
         switch (cmd) {
             case '1':
-                return 'postcodeTurnBarcode';
+                return 'postcodeTurnBarcodePage';
             case '2':
-                return 'barcodeTurnPostcode';
+                return 'barcodeTurnPostcodePage';
             case '3':
                 return 'init';
             case 'q':
