@@ -1,4 +1,4 @@
-const pos = require('../src/pos.js');
+const PostcodeToBarcode = require('../core/PostcodeToBarcode.js');
 class DealPostcodeToBarcode {
     constructor() {
         this.name = 'dealPostcodeToBarcode';
@@ -6,7 +6,7 @@ class DealPostcodeToBarcode {
     }
 
     doAction(cmd) {
-        let result = pos.printBarcode(cmd);
+        let result = new PostcodeToBarcode().printBarcode(cmd);
 
         if (!result) {
             result = 'Error! 输入条码有误.\n';
