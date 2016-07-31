@@ -4,6 +4,7 @@
 
 const createAction = require('./routerAction');
 const transform1 = require('../transformToPostCode');
+let transformPostCode = new transform1();
 
 let name = '输入条码';
 let help = '请输入合法的条码';
@@ -14,7 +15,7 @@ class topostcode extends createAction{
     }
 
     doAction(cmd){
-        console.log(transform1.transformToPostCode(cmd));
+        console.log(transformPostCode.transformToPostCode(cmd));
         return '条码转邮编';
     }
 }

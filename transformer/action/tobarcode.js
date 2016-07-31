@@ -4,6 +4,7 @@
 
 const createAction = require('./routerAction');
 const transform2 = require('../transformToBarcode');
+let transformBarcode = new transform2();
 
 
 let name = '输入邮编';
@@ -15,7 +16,7 @@ class toBarcode extends createAction{
     }
 
     doAction(cmd){
-        console.log(transform2.transformToBarcode(cmd));
+        console.log(transformBarcode.transformToBarcode(cmd));
         return '邮编转条码';
     }
 }

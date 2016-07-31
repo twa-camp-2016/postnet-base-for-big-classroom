@@ -15,6 +15,14 @@ describe('topostcode', function () {
         expect(result).toEqual('条码转邮编');
 
     });
+
+    it('print and return', function () {
+        let cmd = "| :|&*|";
+        spyOn(console, 'log');
+        let result = changePostcode.doAction(cmd);
+        expect(console.log).toHaveBeenCalledWith(`error: 输入的条码不能有：和|以外的字符`);
+        expect(result).toEqual('条码转邮编');
+    });
 });
 
 describe('tobarcode', function () {
@@ -22,15 +30,16 @@ describe('tobarcode', function () {
         let cmd = '45056-1234';
         spyOn(console, 'log');
         let result = changeBarcode.doAction(cmd);
-        expect(console.log).toHaveBeenCalledWith('|:|::|:|:|:||::::|:|::||:::::||::|:|::||::|::|||:::|\ncd is 0');
+        expect(console.log).toHaveBeenCalledWith({error: ``, barcode: '|:|::|:|:|:||::::|:|::||:::::||::|:|::||::|::|||:::|\ncd is 0'});
         expect(result).toEqual('邮编转条码');
 
     });
+
     it('print and return', function () {
         let cmd = '4505';
         spyOn(console, 'log');
         let result = changeBarcode.doAction(cmd);
-        expect(console.log).toHaveBeenCalledWith('error');
+        expect(console.log).toHaveBeenCalledWith(`error: 输入的邮编位数必须是5或9`);
         expect(result).toEqual('邮编转条码');
 
     });
