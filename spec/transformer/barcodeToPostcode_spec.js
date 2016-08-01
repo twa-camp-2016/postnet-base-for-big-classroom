@@ -3,7 +3,7 @@
  * Created by tong on 16-7-28.
  */
 
-const barcodeToPostcode = require("../../transformer/core/barcodeToPostcode.js");
+const barcodeToPostcode = require("../../transformer/core/BarcodeToPostcode.js");
 
 //barcode to postcode
 describe("transferToPostCode", function () {

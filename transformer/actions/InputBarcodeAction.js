@@ -3,7 +3,7 @@
  */
 'use strict';
 
-const BarcodeToPostCode = require('../barcodeToPostcode');
+const BarcodeToPostCode = require('./../core/BarcodeToPostcode');
 let barcodeToPostCode = new BarcodeToPostCode();
 
 
