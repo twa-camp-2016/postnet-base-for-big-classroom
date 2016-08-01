@@ -16,11 +16,11 @@ let routers = [
 ];
 let routerSwitcher = new RouterSwitcher(routers);
 
-function handleUserInput(cmd, output) {
+function run(cmd, output) {
   output(routerSwitcher.start());
   output(routerSwitcher.switchRouter(cmd.trim()).help);
 }
 
 module.exports = (emitter) => {
-  emitter.on('userInput', handleUserInput);
+  emitter.on('userInput', run);
 };
