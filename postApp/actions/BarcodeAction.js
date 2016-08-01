@@ -1,6 +1,6 @@
-
 'use strict';
-const postAppCore = require('../core/transform');
+const Barcode = require('../core/Barcode');
+const barcodes = new Barcode();
 class BarcodeAction {
     constructor() {
         this.name = 'barcode';
@@ -17,8 +17,8 @@ class BarcodeAction {
 
         }
         else {
-            const zipcode = postAppCore.barcode2Zipcode(cmd);
-          console.log(zipcode.value);
+            const zipcode = barcodes.barcode2Zipcode(cmd);
+            console.log(zipcode.value);
             return 'barcode'
         }
 

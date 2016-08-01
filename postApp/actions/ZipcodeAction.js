@@ -1,5 +1,6 @@
 'use strict';
-const postAppCore = require('../core/transform');
+const Zipcode = require('../core/Zipcode');
+const zipcodes = new Zipcode();
 class ZipcodeAction {
     constructor() {
         this.name = 'zipcode';
@@ -12,11 +13,10 @@ class ZipcodeAction {
         }
         else if (cmd == 'r') {
             return 'init';
-
         }
         else {
-            const barcode = postAppCore.zipcode2Barcode(cmd);
-           console.log(barcode.value);
+            const barcode = zipcodes.zipcode2Barcode(cmd);
+            console.log(barcode.value);
             return 'zipcode';
         }
     }

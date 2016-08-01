@@ -1,6 +1,6 @@
 
 'use strict';
-const postAppCore = require('../core/postnet');
+const postAppCore = require('../core/Barcode');
 class InitAction {
     constructor() {
         this.name = 'init';
