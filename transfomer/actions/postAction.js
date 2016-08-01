@@ -1,7 +1,3 @@
-/**
- * Created by ritter on 16-7-29.
- */
-
 "use strict"
 
 const PostToBarcode = require('../postToBarcode');
