@@ -58,7 +58,7 @@ class ZipCodeToBarcode {
     covertToBarcode(zipCodes) {
         if (!(checkBit(zipCodes) && isInvalidZipCodes(zipCodes))) {
             return {
-                error: "input wrong!!!",
+                error: "input wrong!!",
                 data: undefined
             }
         }

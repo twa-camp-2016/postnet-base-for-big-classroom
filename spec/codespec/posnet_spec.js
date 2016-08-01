@@ -9,7 +9,6 @@ const ZipCodeToBarcode = require("../../core/ZipCodeToBarCode");
 describe("covertToZipCodes", function () {
 
     let barcode;
-
     beforeEach(()=> {
         barcode = new BarcodeToZipCode();
     });
@@ -73,7 +72,7 @@ describe("covertToBarcode", function () {
         let zipCodes = "23";
         let result = zipCode.covertToBarcode(zipCodes);
         expect(result).toEqual({
-            error: "input wrong!!!",
+            error: "input wrong!!",
             data: undefined
         });
     });
@@ -81,7 +80,7 @@ describe("covertToBarcode", function () {
         let zipCodes = "23*1";
         let result = zipCode.covertToBarcode(zipCodes);
         expect(result).toEqual({
-            error: "input wrong!!!",
+            error: "input wrong!!",
             data: undefined
         });
     });

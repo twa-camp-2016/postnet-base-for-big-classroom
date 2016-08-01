@@ -11,13 +11,19 @@ class BarcodesAction {
         this.name = 'barcode';
         this.help = `Please input barcode(press 'q' to quit)`.trim()
     }
+
     doAction(cmd) {
         switch (cmd) {
             case 'q':
                 return 'init';
             default:
-                const result=barcode.covertToZipCodes(cmd);
-                console.log('zipCode:'+result.data+'\n'+'error:' + result.error);
+                const result = barcode.covertToZipCodes(cmd);
+                if (result.data === undefined) {
+                    console.log('error:' + result.error);
+                }
+                else if (result.error === undefined) {
+                    console.log('zipCode:' + result.data);
+                }
                 return 'barcode';
         }
     }

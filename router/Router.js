@@ -14,6 +14,7 @@ let actions = [
     new InitAction(),
     new ZipCodesAction()
 ];
+
 class Router {
     constructor() {
         this.currentActionName = 'init';

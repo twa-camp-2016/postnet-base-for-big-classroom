@@ -75,6 +75,7 @@ class BarcodeToZipCode {
                 data: undefined
             }
         }
+
         let codeList = getCodeList();
         let modifiedBarCodes = deleteFrame(barCodes);
         let formatCodes = formatBarCodes(modifiedBarCodes);
