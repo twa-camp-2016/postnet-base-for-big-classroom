@@ -8,7 +8,7 @@ import WelcomeAction from './actions/WelcomeAction';
 import InitAction from './actions/InitAction';
 import PostcodeAction from './actions/PostcodeAction';
 import BarcodeAction from './actions/BarcodeAction';
-let RouterSwitcher = require("./RouterSwitcher");
+import RouterSwitcher from './RouterSwitcher';
 
 let routers = [
   new WelcomeAction(),
@@ -25,6 +25,7 @@ function run(cmd, output) {
 }
 
 module.exports = () => {
+  console.log(routerSwitcher.start());
   repl.start({prompt: '> ', eval: (cmd, context, filename, output) => {
     run(cmd, output);
   }});

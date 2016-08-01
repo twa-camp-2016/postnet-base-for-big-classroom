@@ -18,6 +18,7 @@ class RouterSwitcher {
 
   start() {
     if (this.currentStatus === "welcome") {
+      this.currentStatus = "init";
       return this.routers.find(item => item.name === this.currentStatus).help;
     }
     return;
