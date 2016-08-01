@@ -2,6 +2,8 @@
  * Created by zhangpei on 16/7/28.
  */
 "use strict";
+import repl from "repl";
+
 import WelcomeAction from './actions/WelcomeAction';
 import InitAction from './actions/InitAction';
 import PostcodeAction from './actions/PostcodeAction';
@@ -14,6 +16,7 @@ let routers = [
   new PostcodeAction(),
   new BarcodeAction()
 ];
+
 let routerSwitcher = new RouterSwitcher(routers);
 
 function run(cmd, output) {
@@ -21,6 +24,8 @@ function run(cmd, output) {
   output(routerSwitcher.switchRouter(cmd.trim()).help);
 }
 
-module.exports = (emitter) => {
-  emitter.on('userInput', run);
-};
+module.exports = () => {
+  repl.start({prompt: '> ', eval: (cmd, context, filename, output) => {
+    run(cmd, output);
+  }});
+}
