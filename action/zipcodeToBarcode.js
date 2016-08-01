@@ -1,21 +1,25 @@
 'use strict'
-let createAction=require('./createAction.js');
-let postnet = require('../src/postnet.js');
-module.exports=function () {
-    return createAction('zipcodeToBarcode',
-        `请输入数字（只能五位或九位或九位带‘-’）\n或者1-返回上一层\n2-返回首页`, zipcodeToBarcode);
-};
+let postnet=require('./../src/zipCodeTransferBarcode.js');
 
-function zipcodeToBarcode(cmd) {
-    switch (cmd){
-        case '1':
-            return 'zipCode';
-        case '2':
-            return 'init';
-      
-        default:
-            let result=postnet.zipcodeChangeBarcode(cmd);
-            console.log(result);
-            return 'zipcodeToBarcode';
+class ZipcodeToBarcode{
+    constructor(){
+        this.name='zipcodeToBarcode';
+        this.help=`请输入数字（只能五位或九位或九位带‘-’）\n或者1-返回上一层\n2-返回首页`;
+    }
+    doAction(cmd){
+        
+        switch (cmd){
+            case '1':
+                return 'zipCode';
+            case '2':
+                return 'init';
+
+            default:
+                /*let result=postnet.zipcodeChangeBarcode(cmd);*/
+                let result=new postnet();
+                console.log(result.execute(cmd)._info);
+                return 'zipcodeToBarcode';
+        }
     }
 }
+module.exports=ZipcodeToBarcode;

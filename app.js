@@ -8,30 +8,25 @@ const zipCode = require('./action/zipCode.js');
 const barcodeToZipcode = require('./action/barcodeToZipcode.js');
 const zipcodeToBarcode = require('./action/zipcodeToBarcode.js');
 
-function switchRouter(context, done) {
-    let router = actions.find(item => item.name === currentAction);
-    let result = router.doAction(context.cmd);
+const actions = [new init(), new barcode(), new zipCode(), new barcodeToZipcode(), new zipcodeToBarcode()];
+let currentAction = 'init';
+console.log(actions.find(item=>item.name === currentAction).help);
 
-    let newRouter = actions.find(item => item.name === result);
+function switchRouter(context, done) {
+    let currRouter = actions.find(item=>item.name === currentAction);
+    //路由转换
+    let result = currRouter.doAction(context.cmd);
+    let newRouter = actions.find(item=>item.name === result);
+    //修改当前currentAction
     currentAction = newRouter.name;
     console.log(newRouter.help);
     done(null);
 }
 
-function handleCmd(cmd, context, filename, done) {
-    switchRouter({
-        cmd: cmd.trim()
-    }, done);
+function handleInput(cmd, context, filename, done) {
+    switchRouter({cmd: cmd.trim()}, done);
     done(null);
+
 }
 
-var replServer = repl.start({prompt: "> ", eval: handleCmd});
-
-const actions = [init(), barcode(), zipCode(), zipcodeToBarcode(), barcodeToZipcode()];
-
-let currentAction = 'init';
-//当前的 ：currentAction
-console.log(actions.find(item => item.name === currentAction).help);
-
-
-
+var replServer = repl.start({prompt: '->', eval: handleInput});
