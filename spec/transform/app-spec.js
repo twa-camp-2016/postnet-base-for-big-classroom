@@ -1,15 +1,15 @@
-const ba = require('../../transform/action/barcodeAction.js');
-const init = require('../../transform/action/initAction.js');
-const inputBar = require('../../transform/action/inputBarcode.js');
-const inputPo = require('../../transform/action/inputPost.js');
-const post = require('../../transform/action/postAction.js');
-const router = require('../../transform/action/routerAction.js');
+const ba = require('../../transform/action/BarcodeAction.js');
+const init = require('../../transform/action/InitAction.js');
+const inputBar = require('../../transform/action/InputBarcode.js');
+const inputPo = require('../../transform/action/InputPost.js');
+const post = require('../../transform/action/PostAction.js');
+const router = require('../../transform/action/RouterAction.js');
 
 describe("const[0].doAction", function () {
     it("should return the name of function of number", function () {
         let input = '1';
         let result = ba.doAction(input);
-        let expected = 'inputBarcode';
+        let expected = 'InputBarcode';
         expect(result).toEqual(expected);
     });
     it("should return the name of function of letter", function () {
@@ -30,14 +30,14 @@ describe("initAction", function () {
     it("should return the init ", function () {
         let input = '1';
         let result = init.doAction(input);
-        let expected = 'barcodeTransformPost';
+        let expected = 'BarcodeTransformPost';
         expect(result).toEqual(expected);
     });
     it("should return the init ", function () {
         let input = '2';
         //console.log(init)
         let result = init.doAction(input);
-        let expected = 'postTransformBarcode';
+        let expected = 'PostTransformBarcode';
         expect(result).toEqual(expected);
     });
     it("should return the init ", function () {
@@ -50,18 +50,18 @@ describe("initAction", function () {
 
 describe("inputbarcode", function () {
     it("should return the input", function () {
-        let input = '2';
+        let input = 'b';
         let result = inputBar.doAction(input);
-        let expected = 'barcodeTransformPost';
+        let expected = 'BarcodeTransformPost';
         expect(result).toEqual(expected);
     });
     it("should return the input", function () {
         let input = '3';
         let result = inputBar.doAction(input);
-        let expected = 'barcodeTransformPost';
+        let expected = 'BarcodeTransformPost';
         expect(result).toEqual(expected);
     });
-    it('should reutrn the input check barcodeTransformPost', function () {
+    it('should reutrn the input check BarcodeTransformPost', function () {
         let cmd = '| :::|| ::|:| ::||: :|::| :|:|: :|:|: |';
         let expected = `12345
 cd is:5`;
@@ -70,7 +70,7 @@ cd is:5`;
 
         expect(console.log).toHaveBeenCalledWith(expected)
     });
-    it('should reutrn the input check barcodeTransformPost', function () {
+    it('should reutrn the input check BarcodeTransformPost', function () {
         let cmd = '|ssss';
         let expected = `the input is have not correct input`;
         spyOn(console, 'log');
@@ -78,7 +78,7 @@ cd is:5`;
 
         expect(console.log).toHaveBeenCalledWith(expected)
     });
-    it('should reutrn the input check barcodeTransformPost', function () {
+    it('should reutrn the input check BarcodeTransformPost', function () {
         let cmd = '| |::|| ::|:| ::||: :|::| :|:|: :|:|: |';
         let expected = `the each number > 9 or the exampleString is not correct`;
         spyOn(console, 'log');
@@ -90,15 +90,15 @@ cd is:5`;
 
 describe("inputPost", function () {
     it("should return the post to Barcode", function () {
-        let input = '2';
+        let input = 'p';
         let result = inputPo.doAction(input);
-        let expected = 'postTransformBarcode';
+        let expected = 'PostTransformBarcode';
         expect(result).toEqual(expected);
     });
     it("should return the post to Barcode", function () {
-        let input = '3';
+        let input = 'i';
         let result = inputPo.doAction(input);
-        let expected = 'inputPost';
+        let expected = 'InputPost';
         expect(result).toEqual(expected);
     });
     it('should return the input check postTransformBarcode', function () {
@@ -123,7 +123,7 @@ describe("postAction", function () {
     it("should return the postAction", function () {
         let input = '2';
         let result = post.doAction(input);
-        let expected = 'inputPost';
+        let expected = 'InputPost';
         expect(result).toEqual(expected);
     });
     it("should return the postAction", function () {

@@ -1,13 +1,13 @@
 /**
  * Created by liuru on 16-7-29.
  */
-const createAction = require('./routerAction.js');
-const name = `postTransformBarcode`;
+const CreateAction = require('./RouterAction.js');
+const name = `PostTransformBarcode`;
 const help = `
 ----2-inputPost
 ----3-return the init
 ----q-exist`.trim();
-class post extends createAction {
+class Post extends CreateAction {
     constructor(name, help) {
         super(name, help);
     }
@@ -15,7 +15,7 @@ class post extends createAction {
     doAction(cmd) {
         switch (cmd) {
             case '2':
-                return 'inputPost';
+                return 'InputPost';
             case '3':
                 return 'init';
             case 'q':
@@ -26,4 +26,4 @@ class post extends createAction {
         }
     }
 }
-module.exports = new post(name, help);
+module.exports = new Post(name, help);

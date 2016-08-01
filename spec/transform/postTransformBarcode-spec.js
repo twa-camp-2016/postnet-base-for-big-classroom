@@ -1,5 +1,5 @@
 'use strict';
-const postToBarcode = require('../../transform/postTransformBarcode.js');
+const postToBarcode = require('../../transform/PostTransformBarcode.js');
 let post = new postToBarcode();
 describe("postTransformBarcode", function () {
     it("should return the result", function () {

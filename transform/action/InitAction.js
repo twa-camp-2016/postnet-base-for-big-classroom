@@ -1,7 +1,7 @@
 /**
  * Created by liuru on 16-7-29.
  */
-const createAction = require('./routerAction.js');
+const CreateAction = require('./RouterAction.js');
 
 const name = 'init';
 const help = `
@@ -10,7 +10,7 @@ const help = `
         ----2-postTransformBarcode
         ----q-exist`.trim();
 
-class initAction extends createAction {
+class InitAction extends CreateAction {
     constructor(name, help) {
         super(name, help);
     }
@@ -18,9 +18,9 @@ class initAction extends createAction {
     doAction(cmd) {
         switch (cmd) {
             case '1':
-                return 'barcodeTransformPost';
+                return 'BarcodeTransformPost';
             case '2':
-                return 'postTransformBarcode';
+                return 'PostTransformBarcode';
             case 'q':
                 process.exit(0);
             default:
@@ -29,4 +29,4 @@ class initAction extends createAction {
         }
     }
 }
-module.exports = new initAction(name, help);
+module.exports = new InitAction(name, help);
