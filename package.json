@@ -1,14 +1,15 @@
 {
-  "name": "110-simple-base",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jasmine-node --verbose specs"
   },
+  "dependencies": {
+    "jasmine-node": "1.14.5"
+  },
+  "name": "postnet0",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "jasmine": "^2.4.1"
-  }
+  "description": ""
 }
