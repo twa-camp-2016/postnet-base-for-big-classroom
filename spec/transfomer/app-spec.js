@@ -3,11 +3,18 @@
  */
 "use strict";
 
-const initAction = require('../../transfomer/actions/initAction')
-const postAction = require('../../transfomer/actions/postAction')
-const barcodeAction = require('../../transfomer/actions/barcodeAction')
+const InitAction = require('../../transfomer/actions/InitAction')
+const PostAction = require('../../transfomer/actions/PostAction')
+const BarcodeAction = require('../../transfomer/actions/BarcodeAction')
 
 describe('initAction', function () {
+
+    let initAction;
+
+    beforeEach(()=> {
+       initAction = new InitAction();
+    });
+
     it('test initAction.doAction should return inputPost', function () {
         let cmd = '1';
         let expected = 'inputPost';
@@ -37,6 +44,13 @@ describe('initAction', function () {
 });
 
 describe('postAction', function () {
+
+    let postAction;
+
+    beforeEach(() => {
+       postAction = new PostAction();
+    });
+
    it('test postAction.doAction should return init', function () {
        let cmd = 'q';
        let expected = 'init';
@@ -70,6 +84,13 @@ describe('postAction', function () {
 });
 
 describe('barcodeAction', function () {
+
+    let barcodeAction;
+
+    beforeEach(()=> {
+        barcodeAction = new BarcodeAction();
+    });
+
    it('test barcodeAtcion.doAction should return init', function () {
        let cmd = 'q';
        let expected = 'init';

@@ -3,7 +3,7 @@
  */
 "use strict";
 
-const BarcodeToPost = require("../../transfomer/barcodeToPost");
+const BarcodeToPost = require("../../transfomer/BarcodeToPost");
 
 describe('barcodeToPost', function () {
 

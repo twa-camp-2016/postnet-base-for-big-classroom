@@ -4,15 +4,12 @@
 
 "use strict"
 
-const createAction = require('./createAction');
+class InitAction  {
 
-const name = 'init';
-const help = 'init interface:\n1-post to barcode\n2-barcode to post\nq-exit';
+    constructor() {
+        this.name = 'init';
+        this.help = 'init interface:\n1-post to barcode\n2-barcode to post\nq-exit';
 
-class initAction extends createAction {
-
-    constructor(name, help) {
-        super(name, help);
     }
 
     doAction(cmd) {
@@ -31,4 +28,4 @@ class initAction extends createAction {
     }
 }
 
-module.exports = new initAction(name, help);
+module.exports = InitAction;

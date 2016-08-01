@@ -1,0 +1,35 @@
+/**
+ * Created by ritter on 16-7-28.
+ */
+'use strict';
+
+const repl = require('repl');
+
+const initAction = require('./actions/InitAction')
+const postAction = require('./actions/PostAction')
+const barcodeAction = require('./actions/BarcodeAction')
+
+const actions = [initAction, postAction, barcodeAction];
+
+let currentAction = 'init';
+console.log(actions.find(item => item.name === currentAction).help);
+
+var replServer = repl.start({prompt: "> ", eval: handleCmd});
+
+function switchRouter(context, done) {
+    let router = actions.find(item => item.name === currentAction);
+    let result = router.doAction(context.cmd);
+
+    let newRouter = actions.find(item => item.name === result);
+    currentAction = newRouter.name;
+    console.log(newRouter.help);
+    done(null);
+}
+
+function handleCmd(cmd, context, filename, done) {
+    switchRouter({
+        cmd: cmd.trim()
+    }, done);
+    done(null);
+}
+
