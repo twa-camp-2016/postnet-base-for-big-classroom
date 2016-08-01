@@ -4,7 +4,7 @@
 'use strict';
 const InitAction = require('../../transformer/actions/InitAction');
 
-fdescribe("InitAction", function () {
+describe("InitAction", function () {
   let initAction = new InitAction();
 
   it("input '1' expect 'postcodeToBarcode'", function () {
