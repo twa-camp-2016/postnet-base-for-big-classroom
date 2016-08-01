@@ -1,67 +1,62 @@
 'use strict';
-
 //barcode to postcode
-function loadPostCodes() {
-  return ["||:::", ":::||", "::|:|", "::||:", ":|::|", ":|:|:", ":||::",
-    "|:::|", "|::|:", "|:|::"];
-}
+class barcodeToPostcode{
 
-function transferToPostCode(barcodeString) {
-  let legalResult = isLegalBarcode(barcodeString);
-
-  if (!legalResult) {
-    return "error input(only '|'':'' 'can be accepted and ' 'is must)";
+  loadPostCodes() {
+    return ["||:::", ":::||", "::|:|", "::||:", ":|::|", ":|:|:", ":||::",
+      "|:::|", "|::|:", "|:|::"];
   }
-  let allZipCodes = loadPostCodes();
-  let postCodes = getPostNumber(allZipCodes, barcodeString);
 
-  if (!isLegalCheckDigit(postCodes)) {
-    return "it has uncorrect checkdigit";
+  isLegalBarcode(barcodeString) {
+    return /^\| [:| ]+\|$/.test(barcodeString);
   }
-  return formatPostCode(postCodes);
-}
 
-function isLegalBarcode(barcodeString) {
-  return /^\| [:| ]+\|$/.test(barcodeString);
-}
+  getPostNumber(allZipCodes, barcodeString) {
+    let postNumber = [];
+    let temp = barcodeString.split(" ").slice(1, -1);
 
-function getPostNumber(allZipCodes, barcodeString) {
-  let postNumber = [];
-  let temp = barcodeString.split(" ").slice(1, -1);
+    return temp.map(function (item) {
+      let pos = allZipCodes.indexOf(item);
+      if (pos) {
+        return pos;
+      }
+    });
+  }
 
-  return temp.map(function (item) {
-    let pos = allZipCodes.indexOf(item);
-    if (pos) {
-      return pos;
+  isLegalCheckDigit(postCodes) {
+
+    let total = postCodes.reduce(function (fir, sec) {
+      return fir + sec;
+    });
+
+    return (total % 10) ? false : true;
+  }
+
+  formatPostCode(postCodes) {
+    let formatedPostCode = postCodes.slice(0);
+
+    if (formatedPostCode.length === 10) {
+      formatedPostCode.splice(5, 0, '-');
     }
-  });
-}
+    let item = formatedPostCode.pop();
 
-function isLegalCheckDigit(postCodes) {
-
-  let total = postCodes.reduce(function (fir, sec) {
-    return fir + sec;
-  });
-
-  return (total % 10) ? false : true;
-}
-
-function formatPostCode(postCodes) {
-  let formatedPostCode = postCodes.slice(0);
-
-  if (formatedPostCode.length === 10) {
-    formatedPostCode.splice(5, 0, '-');
+    return formatedPostCode.join('');
   }
-  let item = formatedPostCode.pop();
+  
+  transferToPostCode(barcodeString) {
+    let legalResult = this.isLegalBarcode(barcodeString);
 
-  return formatedPostCode.join('');
+    if (!legalResult) {
+      return "error input(only '|'':'' 'can be accepted and ' 'is must)";
+    }
+    let allZipCodes = this.loadPostCodes();
+    let postCodes = this.getPostNumber(allZipCodes, barcodeString);
+
+    if (!(this.isLegalCheckDigit(postCodes))) {
+      return "it has uncorrect checkdigit";
+    }
+    return this.formatPostCode(postCodes);
+  }
 }
 
-module.exports = {
-  loadPostCodes: loadPostCodes,
-  transferToPostCode: transferToPostCode,
-  isLegalBarcode: isLegalBarcode,
-  getPostNumber: getPostNumber,
-  isLegalCheckDigit: isLegalCheckDigit,
-  formatPostCode: formatPostCode
-}
+module.exports = barcodeToPostcode;
