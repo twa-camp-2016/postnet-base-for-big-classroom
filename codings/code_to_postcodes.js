@@ -35,13 +35,17 @@ function isLengthlegal(barcodeArray) {
     return !legal;
 }
 
+function isTypeInvalid(barcodeArray) {
+    return barcodeArray.length === 6 || barcodeArray.length === 10 || barcodeArray.length === 11;
+}
+
 function matchCodes(barcodeArray) {
     let codeList = loadCodes();
     let codes = barcodeArray.map(code=> {
         return codeList.indexOf(code);
     });
     return codes.reduce((a, b)=> {
-        return a.toString().concat(b.toString());
+        return a.toString()+(b.toString());
     });
 }
 
@@ -61,12 +65,13 @@ function getCodes(codes) {
         return codes.slice(0, codes.length - 1);
     }
     else {
-        return codes.slice(0, 5).concat('-').concat(codes.slice(5, codes.length - 1));
+        return codes.slice(0, 5)+('-')+(codes.slice(5, codes.length - 1));
     }
 }
 
 class barToPostcode {
     codingPostcodes(barcodes) {
+
         if (!(isLegal(barcodes) && isFormat(barcodes))) {
             return {
                 error: 'Your barcodes format wrong!',
@@ -75,7 +80,7 @@ class barToPostcode {
         }
         let barcode = formatBarcode(barcodes);
         let barcodeArray = splitBarcodes(barcode);
-        if (!isLengthlegal(barcodeArray)) {
+        if (!(isLengthlegal(barcodeArray)&&isTypeInvalid(barcodeArray))) {
             return {
                 error: 'Your barcodes length wrong!',
                 data: undefined

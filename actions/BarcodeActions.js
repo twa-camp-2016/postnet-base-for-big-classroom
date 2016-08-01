@@ -3,8 +3,8 @@
  */
 /*global require,module*/
 'use strict';
-const  PostToBarcode= require('../codings/code_to_barcodes.js');
-let postToBarcode=new PostToBarcode();
+const PostToBarcode = require('../codings/code_to_barcodes.js');
+let postToBarcode = new PostToBarcode();
 class Action {
     constructor() {
         this.name = 'barcodes';
@@ -17,8 +17,12 @@ class Action {
         }
         else {
             const barcode = postToBarcode.codingBarcodes(cmd);
-            console.log('error: '+barcode.error);
-            console.log('barcode: '+barcode.data);
+            if (barcode.error === undefined) {
+                console.log('barcode:' + barcode.data);
+            }
+            if (barcode.data === undefined) {
+                console.log('error: ' + barcode.error);
+            }
             return 'barcodes';
         }
     }

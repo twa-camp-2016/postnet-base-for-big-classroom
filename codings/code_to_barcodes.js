@@ -4,6 +4,7 @@ function loadCodes() {
     return ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
 }
 
+
 function isInvalid(postcodes) {
 
     return postcodes.split('').every(temp=> {
@@ -18,7 +19,7 @@ function isTypeLegal(postcodes) {
 function convertFormat(postcodes) {
     if (postcodes.length === 10) {
         let index = postcodes.indexOf('-');
-        return postcodes.slice(0, index).concat(postcodes.slice(index + 1));
+        return postcodes.slice(0, index)+(postcodes.slice(index + 1));
     }
     else {
         return postcodes;
@@ -33,7 +34,7 @@ function calculateCheckDigit(postcode) {
 }
 
 function getAllPostcodes(postcode, checkDigit) {
-    return postcode.concat(checkDigit.toString());
+    return postcode+(checkDigit.toString());
 }
 
 function matchPostcodeCodes(allBarcodes) {
@@ -45,7 +46,7 @@ function matchPostcodeCodes(allBarcodes) {
 }
 
 function formatBarcodes(codes) {
-    return '| '.concat(codes).concat(' |')
+    return '| '+(codes)+(' |')
 }
 
 

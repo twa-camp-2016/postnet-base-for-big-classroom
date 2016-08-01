@@ -20,8 +20,12 @@ class Action {
         }
         else {
             const postcode = barToBarcode.codingPostcodes(cmd);
-            console.log('error: '+postcode.error);
-            console.log('postcode: '+postcode.data);
+            if(postcode.error===undefined) {
+                console.log('postcode: ' + postcode.data);
+            }
+            else {
+                console.log('error: '+postcode.error);
+            }
             return 'postcodes';
         }
     }
