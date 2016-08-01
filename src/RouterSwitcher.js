@@ -4,7 +4,7 @@
 
 class RouterSwitcher {
   constructor(routers) {
-    this.currentStatus = "welcome";
+    this.currentStatus = "init";
     this.routers = routers;
   }
 
@@ -17,11 +17,8 @@ class RouterSwitcher {
   }
 
   start() {
-    if (this.currentStatus === "welcome") {
-      this.currentStatus = "init";
-      return this.routers.find(item => item.name === this.currentStatus).help;
-    }
-    return;
+    console.log("欢迎光临!");
+    return this.routers.find(item =>item.name === this.currentStatus).help;
   }
 }
 
