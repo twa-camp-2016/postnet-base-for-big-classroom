@@ -4,7 +4,7 @@
 'use strict';
 const BarcodeAction = require('../../transformer/actions/BarcodeAction');
 
-fdescribe("BarcodeAction", function () {
+describe("BarcodeAction", function () {
   let barcodeAction = new BarcodeAction();
 
   it("input '1' ecpect 'input postcode'", function () {
