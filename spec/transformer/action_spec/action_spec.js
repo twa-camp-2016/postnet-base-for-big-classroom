@@ -1,33 +1,34 @@
 'use strict'
-const doAction=require('../../../transformer/action/initAction');
-const barToZip=require('../../../transformer/action/barToZip');
-const input_bar=require('../../../transformer/action/inputBar');
-const input_zip=require('../../../transformer/action/inputZip');
-const zToBAction=require('../../../transformer/action/zipToBar');
-describe('doAction',function () {
+const doAction1=require('../../../transformer/action/initAction');
+const barToZip1=require('../../../transformer/action/barToZip');
+const input_bar1=require('../../../transformer/action/inputBar');
+const input_zip1=require('../../../transformer/action/inputZip');
+const zToBAction1=require('../../../transformer/action/zipToBar');
+describe('doAction1',function () {
+    let doAction=new doAction1();
     it('首页测试',function () {
-        let result=doAction();
+        let result=doAction;
         expect(result.doAction('1')).toEqual(
-            'zipcode->b'
+            'zipCodeToBar'
         );
     });
     
     it('首页测试',function () {
-        let result=doAction();
+        let result=doAction;
         expect(result.doAction('2')).toEqual(
-            'barcode->z'
+            'barcodeToZip'
         );
     });
     
     it('首页测试',function () {
         spyOn(console,"log");
         spyOn(process,"exit");
-        doAction().doAction('q');
+        doAction.doAction('q');
         expect(process.exit).toHaveBeenCalled();
     });
     
     it('首页测试',function () {
-        let result=doAction();
+        let result=doAction;
         spyOn(console,"log");
         expect(result.doAction('21222')).toEqual(
             'init'
@@ -35,14 +36,15 @@ describe('doAction',function () {
     });
 })
 describe('barToZip',function () {
+    let barToZip=new barToZip1();
     it('barcode to zip code', function () {
-        let result = barToZip();
+        let result = barToZip;
         expect(result.doAction('1')).toEqual(
             'input_barcode'
         );
     });
     it('barcode to zip code', function () {
-        let result = barToZip();
+        let result = barToZip;
         expect(result.doAction('2')).toEqual(
             'init'
         );
@@ -50,29 +52,30 @@ describe('barToZip',function () {
     it('barcode to zip code', function () {
         spyOn(console, "log");
         spyOn(process, "exit");
-        barToZip().doAction('q');
+        barToZip.doAction('q');
         expect(process.exit).toHaveBeenCalled();
 
     });
     it('barcode to zip code', function () {
         spyOn(console, "log");
-        let result = barToZip();
+        let result = barToZip;
 
         expect(result.doAction('1111111')).toEqual(
-            'barcode->z'
+            'barcodeToZip'
         );
     });
 
 });
 describe('input_bar',function () {
+    let input_bar=new input_bar1();
     it('接收barcode并计算', function () {
-        let result = input_bar();
+        let result = input_bar;
         expect(result.doAction('1')).toEqual(
-            'barcode->z'
+            'barcodeToZip'
         );
     });
     it('接收barcode并计算', function () {
-        let result = input_bar();
+        let result = input_bar;
         expect(result.doAction('2')).toEqual(
             'init'
         );
@@ -80,14 +83,14 @@ describe('input_bar',function () {
     it('接收barcode并计算', function () {
         spyOn(console, "log");
         spyOn(process, "exit");
-        input_bar().doAction('q');
+        input_bar.doAction('q');
         expect(process.exit).toHaveBeenCalled();
 
     });
     it('接收barcode并计算', function () {
         spyOn(console, "log");
 
-        let result = input_bar();
+        let result = input_bar;
 
         expect(result.doAction('1111111')).toEqual(
             'input_barcode'
@@ -96,14 +99,15 @@ describe('input_bar',function () {
 
 });
 describe('input_zip',function () {
+    let input_zip=new input_zip1();
     it('接收zip code并计算', function () {
-        let result = input_zip();
+        let result = input_zip;
         expect(result.doAction('1')).toEqual(
-            'zipcode->b'
+            'zipCodeToBar'
         );
     });
     it('接收zip code并计算', function () {
-        let result = input_zip();
+        let result = input_zip;
         expect(result.doAction('2')).toEqual(
             'init'
         );
@@ -111,14 +115,14 @@ describe('input_zip',function () {
     it('接收zip code并计算', function () {
         spyOn(console, "log");
         spyOn(process, "exit");
-        input_zip().doAction('q');
+        input_zip.doAction('q');
         expect(process.exit).toHaveBeenCalled();
 
     });
     it('接收zip code并计算', function () {
         spyOn(console, "log");
 
-        let result = input_zip();
+        let result = input_zip;
 
         expect(result.doAction('1111111')).toEqual(
             'input_zipcode'
@@ -127,20 +131,21 @@ describe('input_zip',function () {
 
 });
 describe('zToBAction',function () {
+    let zToBAction=new zToBAction1();
     it('zip code to barcode',function () {
-        let result=zToBAction();
+        let result=zToBAction;
         expect(result.doAction('1')).toEqual('input_zipcode')
     });
 
     it('zip code to barcode',function () {
-        let result=zToBAction();
+        let result=zToBAction;
         expect(result.doAction('2')).toEqual('init')
     });
 
     it('zip code to barcode',function () {
         spyOn(console, "log");
         spyOn(process, "exit");
-        zToBAction().doAction('q');
+        zToBAction.doAction('q');
         expect(process.exit).toHaveBeenCalled();
 
     });
@@ -148,10 +153,10 @@ describe('zToBAction',function () {
     it('zip code to barcode',function () {
         spyOn(console, "log");
 
-        let result = zToBAction();
+        let result = zToBAction;
 
         expect(result.doAction('1111111')).toEqual(
-            'zipcode->b'
+            'zipCodeToBar'
         );
     });
 })

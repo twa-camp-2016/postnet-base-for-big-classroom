@@ -1,11 +1,11 @@
 'use strict';
-
 const repl = require('repl');
-const init = require('./action/initAction.js');
+const welcome = require('./action/initAction.js');
 const zipToBar = require('./action/zipToBar.js');
 const input_zip = require('./action/inputZip.js');
 const barToZip = require('./action/barToZip');
 const input_bar = require('./action/inputBar');
+const router =require('./router');
 
 function switchRouter(context, done) {
     let router = actions.find(item => item.name === currentAction);
@@ -26,11 +26,11 @@ function handleCmd(cmd, context, filename, done) {
 var replServer = repl.start({prompt: "> ", eval: handleCmd});
 
 const actions = [
-    init(),
-    zipToBar(),
-    input_zip(),
-    barToZip(),
-    input_bar()
+   new welcome(),
+   new zipToBar(),
+   new input_zip(),
+   new barToZip(),
+   new input_bar()
 ];
 
 let currentAction = 'init';

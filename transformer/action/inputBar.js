@@ -1,25 +1,32 @@
 'use strict'
-const createAction=require('./routeAction.js');
-const method = require('../../transformer/postcode2Barcode.js');
+const barcode = require('../../transformer/barcodeCore.js');
 
-function input_bar(cmd) {
-    switch(cmd) {
-        case '1':return('barcode->z');
-        case '2':return('init');
-        case 'q':
-            process.exit(0);
-        default:
-            console.log('邮编：');
-            console.log(method.dealBarcode(cmd));
-            console.log('\n');
-            return 'input_barcode'
-    }    
+class input_bar{
+    constructor(){
+        this.name='input_barcode';
+        this.help=
+        `请输入条码
+        （例如| :|::| :|:|: ||::: :|:|: :||:: :::|| ::|:| ::||: :|::| ||::: |）
+         或者:
+         1.回到上层
+         2.回到首页
+         q.退出`
+    }
+
+    doAction(cmd){
+        switch(cmd) {
+            case '1':return('barcodeToZip');
+            case '2':return('init');
+            case 'q':
+                process.exit(0);
+            default:
+                console.log('邮编：');
+                let barcode1=new barcode();
+                console.log(barcode1.dealBarcode(cmd));
+                console.log('\n');
+                return 'input_barcode'
+        }
+    }
 }
 
-module.exports=function () {
-    return createAction( 'input_barcode', "请输入条码（例如| :|::| :|:|: ||::: :|:|: :||:: :::|| ::|:| ::||: :|::| ||::: |）" +
-    '或者:\n' +
-    '1.回到上层\n' +
-    '2.回到首页\n' +
-    'q.退出\n',input_bar);
-}
+module.exports=input_bar;
