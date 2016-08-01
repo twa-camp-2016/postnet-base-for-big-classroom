@@ -3,24 +3,38 @@
  */
 /*global require,describe,expect,it,toEqual,toBeUndefined */
 const ZIPToBarcode = require("../src/ZIPToBarcode.js");
-describe("ZIPToBarcode", function () {
+fdescribe("ZIPToBarcode", function () {
+
+    let barcode;
+    beforeEach(()=> {
+        barcode = new ZIPToBarcode();
+    });
     it("should return ZIP to Barcode", function () {
         let input = '23761';
-        let result = '| ::|:| ::||: |:::| :||:: :::|| :::|| |';
-        let temp = ZIPToBarcode.changeToBarcode(input);
-        expect(temp).toEqual(result);
+        let temp = barcode.changeToBarcode(input);
+        expect(temp).toEqual({
+            error: undefined,
+            data: '| ::|:| ::||: |:::| :||:: :::|| :::|| |'
+        });
     });
 
     it("zip code is invalid", function () {
         let input = '2376233234234234';
-        let temp = ZIPToBarcode.changeToBarcode(input);
-        expect(temp).toBeUndefined();
+        let temp = barcode.changeToBarcode(input);
+        expect(temp).toEqual({
+                error: 'input error',
+                data: undefined
+            }
+        );
     });
 
-    it("wrong input num", function () {
+    it("wrong input num digit", function () {
         let input = '356722';
-        let temp = ZIPToBarcode.changeToBarcode(input);
-        expect(temp).toBeUndefined();
+        let temp = barcode.changeToBarcode(input);
+        expect(temp).toEqual({
+            error: 'input error',
+            data: undefined
+        });
     });
 
 });
