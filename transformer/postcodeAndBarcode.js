@@ -47,7 +47,6 @@ class PostcodeToBarcode {
 
     postcodeToBarcode(inputPostcodes) {
         let barcodes;
-        // let postcode = new postnet.Postcode(inputPostcodes);
         if (checkPostcodes(inputPostcodes)) {
             let allBarcodes = loadAllBarcodes();
             let postcodes = getPostcodes(inputPostcodes);
