@@ -4,12 +4,12 @@
 'use strict';
 /*global repl,require*/
 
-const router = require('./router');
+const Router = require('../router/Router');
 const repl = require('repl');
 
 
+let router=new Router();
 router.start();
-
 repl.start({prompt:'>',eval:handleInput});
 
 function handleInput(cmd,context,filename,callback) {
