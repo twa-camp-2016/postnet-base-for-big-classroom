@@ -5,7 +5,7 @@
 
 const PostcodeAction = require('../../transformer/actions/PostcodeAction');
 
-fdescribe("PostcodeAction", function () {
+describe("PostcodeAction", function () {
   let postcodeAction = new PostcodeAction();
 
   it("input '1' expect 'input barcode'", function () {
