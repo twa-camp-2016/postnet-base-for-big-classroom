@@ -3,24 +3,24 @@
  */
 'use strict';
 
-const pTob = require('../postcodeToBarcode');
-const createAction = require('./createAction');
+const PostcodeToBarcode = require('../postcodeToBarcode');
+let postCodeToBarcode = new PostcodeToBarcode();
 
-const name = 'input postcode';
-const help = '\n\n\t\t\t邮编转条码\nPlease input your postcode(q to exit):';
-
-class inputPostcodeAction extends createAction {
-  constructor(name, help) {
-    super(name, help);
+class InputPostcodeAction {
+  
+  constructor() {
+    this.name = 'input postcode';
+    this.help = '\n\n\t\t\t邮编转条码\nPlease input your postcode(q to exit):';
   }
 
   doAction(cmd) {
     if (cmd === 'q') {
       return 'postcodeToBarcode';
     }
+
     console.log("The result is:");
-    console.log(pTob.transferToBarcode(cmd.trim()));
+    console.log(postCodeToBarcode.transferToBarcode(cmd.trim()));
     return 'input postcode';
   }
 }
-module.exports = new inputPostcodeAction(name, help);
+module.exports = InputPostcodeAction;

@@ -3,20 +3,16 @@
  */
 'use strict';
 
-const createAction = require('./createAction');
-
-const name = 'barcodeToPostcode';
-const help = '\t\t-------------------------\n' +
-        '\t\t||\t条码转邮编首页\n' +
-        '\t\t|| 1---input the barcode\n' +
-        '\t\t|| 2---back to previous\n' +
-        '\t\t|| q---exit\n' +
-        '\t\t-------------------------\n' +
-        'Please input your number:';
-
-class toPostcodeAction extends createAction {
-  constructor(name, help) {
-    super(name, help);
+class PostcodeAction {
+  constructor() {
+    this.name = 'barcodeToPostcode';
+    this.help = '\t\t-------------------------\n' +
+            '\t\t||\t条码转邮编首页\n' +
+            '\t\t|| 1---input the barcode\n' +
+            '\t\t|| 2---back to previous\n' +
+            '\t\t|| q---exit\n' +
+            '\t\t-------------------------\n' +
+            'Please input your number:';
   }
 
   doAction(cmd) {
@@ -35,4 +31,4 @@ class toPostcodeAction extends createAction {
   }
 }
 
-module.exports = new toPostcodeAction(name, help);
+module.exports = PostcodeAction;

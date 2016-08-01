@@ -2,7 +2,7 @@
 /**
  * Created by tong on 16-7-28.
  */
-const postcodeToBarcode = require("../../transformer/postcodeToBarcode.js");
+const postcodeToBarcode = require("../../transformer/core/postcodeToBarcode.js");
 
 //postcode to barcode
 describe("transferToBarcode", function () {

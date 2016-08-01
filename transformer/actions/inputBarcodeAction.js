@@ -3,15 +3,15 @@
  */
 'use strict';
 
-const bTop = require('../barcodeToPostcode');
-const createAction = require('./createAction');
+const BarcodeToPostCode = require('../barcodeToPostcode');
+let barcodeToPostCode = new BarcodeToPostCode();
 
-const name = 'input barcode';
-const help = '\n\n\t\t\t条码转邮编\nPlease input your barcode(q to exit):';
 
-class inputBarcodeAction extends createAction {
-  constructor(name, help) {
-    super(name, help);
+class InputBarcodeAction {
+
+  constructor() {
+    this.name = 'input barcode';
+    this.help = '\n\n\t\t\t条码转邮编\nPlease input your barcode(q to exit):';
   }
 
   doAction(cmd) {
@@ -19,9 +19,9 @@ class inputBarcodeAction extends createAction {
       return 'barcodeToPostcode';
     }
     console.log("The result is:");
-    console.log(bTop.transferToPostCode(cmd.trim()));
+    console.log(barcodeToPostCode.transferToPostCode(cmd.trim()));
     return 'input barcode';
   }
 }
 
-module.exports = new inputBarcodeAction(name, help);
+module.exports = InputBarcodeAction;

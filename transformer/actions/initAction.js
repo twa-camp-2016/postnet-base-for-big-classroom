@@ -3,20 +3,16 @@
  */
 'use strict';
 
-const createAction = require('./createAction');
-
-const name = 'init';
-const help = '\t\t-------------------------\n' +
-        '\t\t||\t    首页\n' +
-        '\t\t|| 1---postcode to barcode\n' +
-        '\t\t|| 2---barcode to postcode\n' +
-        '\t\t|| q---exit\n' +
-        '\t\t-------------------------\n' +
-        'Please input your number:';
-
-class initAction extends createAction {
-  constructor(name, help) {
-    super(name, help);
+class InitAction {
+  constructor() {
+    this.name = 'init';
+    this.help = '\t\t-------------------------\n' +
+            '\t\t||\t    首页\n' +
+            '\t\t|| 1---postcode to barcode\n' +
+            '\t\t|| 2---barcode to postcode\n' +
+            '\t\t|| q---exit\n' +
+            '\t\t-------------------------\n' +
+            'Please input your number:';
   }
 
   doAction(cmd) {
@@ -35,4 +31,4 @@ class initAction extends createAction {
   }
 }
 
-module.exports = new initAction(name, help);
+module.exports = InitAction;

@@ -2,18 +2,18 @@
 
 const repl = require('repl');
 
-const initAction = require('./transformer/actions/initAction');
-const inputBarcodeAction = require('./transformer/actions/inputBarcodeAction');
-const inputPostcodeAction = require('./transformer/actions/inputPostcodeAction');
-const toBarcodeAction = require('./transformer/actions/toBarcodeAction');
-const toPostcodeAction = require('./transformer/actions/toPostcodeAction');
+const InitAction = require('./transformer/actions/initAction');
+const InputBarcodeAction = require('./transformer/actions/inputBarcodeAction');
+const InputPostcodeAction = require('./transformer/actions/inputPostcodeAction');
+const BarcodeAction = require('./transformer/actions/toBarcodeAction');
+const PostcodeAction = require('./transformer/actions/toPostcodeAction');
 
 const actions = [
-  initAction,
-  inputBarcodeAction,
-  inputPostcodeAction,
-  toBarcodeAction,
-  toPostcodeAction
+  new InitAction(),
+  new InputBarcodeAction(),
+  new InputPostcodeAction(),
+  new BarcodeAction(),
+  new PostcodeAction()
 ]
 
 let currentAction = 'init';
