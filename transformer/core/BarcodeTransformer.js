@@ -1,6 +1,10 @@
 /**
  * Created by hxc on 16-7-28.
  */
+function loadBars() {
+    return ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
+}
+
 function isLegalLength(formatedBarcodes) {
     if (formatedBarcodes.length === 6 || formatedBarcodes.length === 10) {
         return true;
@@ -48,31 +52,20 @@ function isLegalCd(postCodeAndCd) {
     return temp % 10 === 0;
 }
 
-function barcodeToPostCode(barcode) {
-    let output = '';
-    if (isLegalBarcode(barcode)) {
-        let barcodes = loadBars();
-        let formatedBarcode = formatBarcode(barcode);
-        let postcodeAndCd = getPostCode(formatedBarcode, barcodes);
-        if (isLegalCd(postcodeAndCd) && isLegalLength(formatedBarcode)) {
-            output = postcodeAndCd.postCode.slice(0, 5) + '-' + postcodeAndCd.postCode.slice(5, 9);
-            return output;
+class BarcodeTransformer {
+    barcodeToPostCode(barcode) {
+        let output = '';
+        if (isLegalBarcode(barcode)) {
+            let barcodes = loadBars();
+            let formatedBarcode = formatBarcode(barcode);
+            let postcodeAndCd = getPostCode(formatedBarcode, barcodes);
+            if (isLegalCd(postcodeAndCd) && isLegalLength(formatedBarcode)) {
+                output = postcodeAndCd.postCode.slice(0, 5) + '-' + postcodeAndCd.postCode.slice(5, 9);
+                return output;
+            }
         }
+        return '您输入的格式不正确';
     }
-    return '您输入的格式不正确';
 }
 
-function loadBars() {
-    return ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
-}
-
-module.exports = {
-    isLegalLength: isLegalLength,
-    barcodeLengthIsFive: barcodeLengthIsFive,
-    isLegalBarcode: isLegalBarcode,
-    formatBarcode: formatBarcode,
-    getPostCode: getPostCode,
-    isLegalCd: isLegalCd,
-    barcodeToPostCode: barcodeToPostCode,
-    loadBars: loadBars
-}
+module.exports = new BarcodeTransformer();

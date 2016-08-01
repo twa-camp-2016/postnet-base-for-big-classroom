@@ -1,6 +1,7 @@
 /**
  * Created by hxc on 16-7-28.
  */
+
 function loadBars() {
     return ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
 }
@@ -36,23 +37,18 @@ function getBarCode(formatedPostCode, barcodes, cd) {
         }, '|') + barcodes[cd] + '|';
 }
 
-function postToBarcode(postcode) {
-    if (isLegalPostCode(postcode)) {
-        let barcodes = loadBars();
-        let formatedPostCode = formatPostCode(postcode);
-        let cd = getCD(formatedPostCode);
-        let barcode = getBarCode(formatedPostCode, barcodes, cd);
-        let output = postcode + '==' + barcode + '\n' + 'cd is ' + cd;
-        return output;
+class PostTransformer {
+    postToBarcode(postcode) {
+        if (isLegalPostCode(postcode)) {
+            let barcodes = loadBars();
+            let formatedPostCode = formatPostCode(postcode);
+            let cd = getCD(formatedPostCode);
+            let barcode = getBarCode(formatedPostCode, barcodes, cd);
+            let output = postcode + '==' + barcode + '\n' + 'cd is ' + cd;
+            return output;
+        }
+        return '您输入的邮编格式不正确，请重新输入';
     }
-    return '您输入的邮编格式不正确，请重新输入';
 }
 
-module.exports = {
-    loadBars: loadBars,
-    formatPostCode: formatPostCode,
-    getCD: getCD,
-    getBarCode: getBarCode,
-    isLegalPostCode: isLegalPostCode,
-    postToBarcode: postToBarcode
-};
+module.exports=new PostTransformer();

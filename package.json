@@ -1,5 +1,5 @@
 {
-  "name": "110-simple-base",
+  "name": "postnet",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
+  "devDependencies": {
     "jasmine": "^2.4.1"
   }
 }

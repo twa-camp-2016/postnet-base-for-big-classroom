@@ -1,7 +1,7 @@
 /**
  * Created by hxc on 16-7-29.
  */
-var post2bar = require('../../transformer/post2barAction');
+var post2bar = require('../../transformer/Actions/Post2barAction');
 
 describe('post2barAction', function () {
     it('should return name of string', function () {

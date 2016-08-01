@@ -1,7 +1,7 @@
 /**
  * Created by hxc on 16-7-29.
  */
-let init = require('../../transformer/initDoAction');
+let init = require('../../transformer/Actions/InitDoAction');
 describe('initDoAction', function () {
     it('should return post2Barcode', function () {
         let result = init.doAction('1');
