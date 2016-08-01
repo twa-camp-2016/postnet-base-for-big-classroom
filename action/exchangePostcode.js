@@ -1,5 +1,4 @@
-const postnet = require("../transformer/translate");
-
+const postnet = require("../transformer/postcodeAndBarcode");
 class ExchangePostcode {
     constructor() {
         this.name = "exchangePostcode";
@@ -16,7 +15,8 @@ class ExchangePostcode {
             case 'q':
                 process.exit(0);
             default:
-                let input = postnet.postcodeToBarcode(cmd);
+                let temp = new postnet.PostcodeToBarcode(cmd);
+                let input = temp.postcodeToBarcode(cmd);
                 console.log(input);
                 return 'exchangePostcode';
         }

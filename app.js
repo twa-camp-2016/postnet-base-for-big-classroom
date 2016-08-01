@@ -1,6 +1,5 @@
 'use strict';
 
-const postnet = require("./transformer/postcodeAndBarcode.js");
 const init = require("./action/init.js");
 const postcode = require("./action/postcode.js");
 const barcode = require("./action/barcode.js");
