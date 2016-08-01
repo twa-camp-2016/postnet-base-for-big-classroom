@@ -2,38 +2,29 @@
  * Created by zhangsha on 16-7-29.
  */
 'use strict';
-const init = require('./action/initAction');
-const tobarcode = require('./action/toBarcodeSelect');
-const toPostcodSelect = require('./action/toPostCodeSelect');
-const barcodeTopostcode = require('./action/topostcode');
-const postcodeTobarcode = require('./action/tobarcode');
-
 const repl = require('repl');
+const init = require('./action/InitAction');
+const tobarcode = require('./action/TransformBarcodeSelectAction');
+const toPostcodSelect = require('./action/TransformPostCodeSelectAction');
+const barcodeTopostcode = require('./action/TransformPostCodeAction');
+const postcodeTobarcode = require('./action/TransformBarcodeAction');
+const router = require('./action/Router');
+const actions = [
+    init,
+    toPostcodSelect,
+    barcodeTopostcode,
+    tobarcode,
+    postcodeTobarcode
+];
 
-function switchRouter(context, done) {
-    let router = actions.find(item => item.name === currentAction);
-    let result = router.doAction(context.cmd);
-    let newRouter = actions.find(item => item.name === result);
-
-    currentAction = newRouter.name;
-    console.log(newRouter.help);
-
-    done(null);
-}
+let routerObj = new router(actions);
+routerObj.start();
 
 function handleCmd(cmd, context, filename, done) {
-    switchRouter({
-        cmd: cmd.trim()
-    }, done);
+    routerObj.switchRouter(cmd.trim());
+    routerObj.start();
     done(null);
-
 }
 
-
 var replServer = repl.start({prompt: "> ", eval: handleCmd});
-
-const actions = [init, toPostcodSelect, barcodeTopostcode, tobarcode, postcodeTobarcode];
-
-let currentAction = 'init';
-console.log(actions.find(item => item.name === currentAction).help);
 

@@ -2,7 +2,7 @@
  * Created by zhangsha on 16-7-29.
  */
 
-const createAction = require('./routerAction');
+const createAction = require('./CreateAction');
 const transform2 = require('../transformToBarcode');
 let transformBarcode = new transform2();
 
@@ -10,7 +10,7 @@ let transformBarcode = new transform2();
 let name = '输入邮编';
 let help = '请输入合法的邮编';
 
-class toBarcode extends createAction{
+class TransformBarcodeAction extends createAction{
     constructor(name, help){
         super(name, help);
     }
@@ -21,4 +21,4 @@ class toBarcode extends createAction{
     }
 }
 
-module.exports = new toBarcode(name, help);
+module.exports = new TransformBarcodeAction(name, help);

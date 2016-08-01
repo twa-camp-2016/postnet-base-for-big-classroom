@@ -1,29 +1,24 @@
 /**
  * Created by zhangsha on 16-7-29.
  */
-const createAction = require('./routerAction');
-
-
-let name = 'init';
+const createAction = require('./CreateAction');
+let name = '邮编转条码';
 let help = `
-welcome 
-1-条码转邮编
-2-邮编转条码
+1-输入邮编
+2-返回上一层 
 q-退出`.trim();
 
-
-
-class init extends createAction{
+class TransformBarcodeSelectView extends createAction{
     constructor(name, help){
         super(name, help);
     }
 
     doAction(cmd){
-        switch(cmd) {
+        switch (cmd) {
             case '1':
-                return '条码转邮编';
+                return '输入邮编';
             case '2':
-                return '邮编转条码';
+                return 'init';
             case 'q':
                 process.exit(0);
                 return;
@@ -32,7 +27,6 @@ class init extends createAction{
                 return 'init';
         }
     }
-
 }
 
-module.exports = new init(name, help);
+module.exports = new TransformBarcodeSelectView(name, help);

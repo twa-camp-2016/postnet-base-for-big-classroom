@@ -1,12 +1,13 @@
 /**
  * Created by zhangsha on 16-7-29.
  */
-const changePostcode = require('../../transformer/action/topostcode');
-const changeBarcode = require('../../transformer/action/tobarcode');
-const selectCallBack1 = require('../../transformer/action/toPostCodeSelect');
-const selectCallBack2 = require('../../transformer/action/toBarcodeSelect');
+const changePostcode = require('../../transformer/action/TransformPostCodeAction');
+const changeBarcode = require('../../transformer/action/TransformBarcodeAction');
+const selectCallBack1 = require('../../transformer/action/TransformPostCodeSelectAction');
+const selectCallBack2 = require('../../transformer/action/TransformBarcodeSelectAction');
+const initAction = require('../../transformer/action/InitAction');
 
-describe('topostcode', function () {
+describe('TransformPostcodeAction', function () {
     it('print and return', function () {
         let cmd = '| :|::| :|:|: ||::: :|:|: :||:: :::|| ::|:| ::||: :|::| ||::: |';
         spyOn(console, 'log');
@@ -25,12 +26,12 @@ describe('topostcode', function () {
     });
 });
 
-describe('tobarcode', function () {
+describe('TransformBarcodeAction', function () {
     it('print and return', function () {
         let cmd = '45056-1234';
         spyOn(console, 'log');
         let result = changeBarcode.doAction(cmd);
-        expect(console.log).toHaveBeenCalledWith({error: ``, barcode: '|:|::|:|:|:||::::|:|::||:::::||::|:|::||::|::|||:::|\ncd is 0'});
+        expect(console.log).toHaveBeenCalledWith('|:|::|:|:|:||::::|:|::||:::::||::|:|::||::|::|||:::|\ncd is 0');
         expect(result).toEqual('邮编转条码');
 
     });
@@ -45,7 +46,7 @@ describe('tobarcode', function () {
     });
 });
 
-describe('toPostCodeSelect', function () {
+describe('TransformPostCodeSelectView', function () {
     it('print select view', function () {
         let cmd = '1';
         let result = selectCallBack1.doAction(cmd);
@@ -58,9 +59,16 @@ describe('toPostCodeSelect', function () {
         let expected = 'init';
         expect(result).toEqual(expected);
     });
+    it('print select view', function () {
+        spyOn(process, 'exit')
+        let cmd = 'q';
+        selectCallBack1.doAction(cmd);
+
+        expect(process.exit).toHaveBeenCalledWith(0);
+    });
 });
 
-describe('toBarCodeSelect', function () {
+describe('TransformBarcodeSelectView', function () {
     it('print select view', function () {
         let cmd = '1';
         let result = selectCallBack2.doAction(cmd);
@@ -73,4 +81,34 @@ describe('toBarCodeSelect', function () {
         let expected = 'init';
         expect(result).toEqual(expected);
     });
+    it('print select view', function () {
+        spyOn(process, 'exit')
+        let cmd = 'q';
+        selectCallBack1.doAction(cmd);
+
+        expect(process.exit).toHaveBeenCalledWith(0);
+    });
 });
+describe('init', function () {
+    it('print select view', function () {
+        let cmd = '1';
+        let result = initAction.doAction(cmd);
+        let expected = '条码转邮编';
+        expect(result).toEqual(expected);
+    });
+    it('print select view', function () {
+        let cmd = '2';
+        let result = initAction.doAction(cmd);
+        let expected = '邮编转条码';
+        expect(result).toEqual(expected);
+    });
+    it('print select view', function () {
+        spyOn(process, 'exit')
+        let cmd = 'q';
+        initAction.doAction(cmd);
+
+        expect(process.exit).toHaveBeenCalledWith(0);
+    });
+});
+
+

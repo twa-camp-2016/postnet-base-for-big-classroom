@@ -1,10 +1,10 @@
 'use strict';
-class toPostCode{
+class BarcodetoPostCodeTransformer{
     transformToPostCode(barcode) {
-        let digits = this.loadAllDigit();
-        let flag = this.isValidBarcodeDigit(barcode);
-        let flag1 = this.isHasFrame(barcode);
-        let flag2 = this.isValidBarcodeLength(barcode);
+        let digits = loadAllDigit();
+        let flag = isValidBarcodeDigit(barcode);
+        let flag1 = isHasFrame(barcode);
+        let flag2 = isValidBarcodeLength(barcode);
 
         if(flag === false){
             return `error: 输入的条码不能有：和|以外的字符`;
@@ -19,57 +19,62 @@ class toPostCode{
         }
 
         if (flag && flag1 && flag2) {
-            let digitsArray = this.getDigitsArray(barcode);
-            let postCodeArray = this.changePostCodeArray(digitsArray, digits);
-            let codeArray = this.checkCD(postCodeArray);
-            return this.getPostCode(codeArray);
+            let digitsArray = getDigitsArray(barcode);
+            let postCodeArray = changePostCodeArray(digitsArray, digits);
+            let codeArray = checkCD(postCodeArray);
+            return getPostCode(codeArray);
         }
     }
 
-     loadAllDigit() {
-        return ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
-    }
-
-     isValidBarcodeDigit(barcode) {
-        return /^[\|: ]+$/.test(barcode);
-    }
-
-     isHasFrame(barcode) {
-        return barcode.slice(0, 2) === "| " && barcode.slice(-2) === " |";
-    }
-
-     isValidBarcodeLength(barcode) {
-        let array1 = barcode.slice(2, -2).split(" ");
-        return array1.length === 6 || array1.length === 10;
-
-    }
-
-     getDigitsArray(barcode) {
-        return barcode.slice(2, -2).split(' ');
-    }
 
 
-     changePostCodeArray(array, digits) {
-        return array.map((item) => digits.indexOf(item));
-    }
 
-
-     checkCD(array) {
-        let temp = array.reduce((a, b) => a + b);
-
-        return temp % 10 === 0 ? array : 'error';
-    }
-
-
-     getPostCode(codeArray) {
-        if (codeArray.length === 10) {
-            codeArray.splice(5, 0, '-');
-        }
-
-        let postCode = codeArray.join('');
-        let code = postCode.substring(0, postCode.length - 1);
-        let cd = postCode.substr(postCode.length - 1, 1);
-        return code + '\n' + 'cd is ' + cd;
-    }
 }
-module.exports = toPostCode;
+
+function loadAllDigit() {
+    return ['||:::', ':::||', '::|:|', '::||:', ':|::|', ':|:|:', ':||::', '|:::|', '|::|:', '|:|::'];
+}
+
+function isValidBarcodeDigit(barcode) {
+    return /^[\|: ]+$/.test(barcode);
+}
+
+function isHasFrame(barcode) {
+    return barcode.slice(0, 2) === "| " && barcode.slice(-2) === " |";
+}
+
+function isValidBarcodeLength(barcode) {
+    let array1 = barcode.slice(2, -2).split(" ");
+    return array1.length === 6 || array1.length === 10;
+
+}
+
+function getDigitsArray(barcode) {
+    return barcode.slice(2, -2).split(' ');
+}
+
+
+function changePostCodeArray(array, digits) {
+    return array.map((item) => digits.indexOf(item));
+}
+
+
+function checkCD(array) {
+    let temp = array.reduce((a, b) => a + b);
+
+    return temp % 10 === 0 ? array : 'error';
+}
+
+
+function getPostCode(codeArray) {
+    if (codeArray.length === 10) {
+        codeArray.splice(5, 0, '-');
+    }
+
+    let postCode = codeArray.join('');
+    let code = postCode.substring(0, postCode.length - 1);
+    let cd = postCode.substr(postCode.length - 1, 1);
+    return code + '\n' + 'cd is ' + cd;
+}
+
+module.exports = BarcodetoPostCodeTransformer;

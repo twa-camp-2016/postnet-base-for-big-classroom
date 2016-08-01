@@ -2,14 +2,14 @@
  * Created by zhangsha on 16-7-29.
  */
 
-const createAction = require('./routerAction');
+const createAction = require('./CreateAction');
 const transform1 = require('../transformToPostCode');
 let transformPostCode = new transform1();
 
 let name = '输入条码';
 let help = '请输入合法的条码';
 
-class topostcode extends createAction{
+class TransformPostcodeAction extends createAction{
     constructor(name, help){
         super(name, help);
     }
@@ -20,4 +20,4 @@ class topostcode extends createAction{
     }
 }
 
-module.exports = new topostcode(name, help);
+module.exports = new TransformPostcodeAction(name, help);

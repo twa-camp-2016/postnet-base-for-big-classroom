@@ -9,7 +9,7 @@ describe("transformToBarcode", function () {
     it("should return postcode", function () {
         let input = "45056-1234";
         let result = changeBarcode.transformToBarcode(input);
-        let barcode = {error: ``, barcode: '|:|::|:|:|:||::::|:|::||:::::||::|:|::||::|::|||:::|\ncd is 0'};
+        let barcode = '|:|::|:|:|:||::::|:|::||:::::||::|:|::||::|::|||:::|\ncd is 0';
         expect(result).toEqual(barcode);
     });
 

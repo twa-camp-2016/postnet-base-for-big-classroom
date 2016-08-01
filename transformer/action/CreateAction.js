@@ -2,7 +2,7 @@
  * Created by zhangsha on 16-7-29.
  */
 
-class createAction{
+class CreateAction{
     constructor(name, help){
         this.name = name;
         this.help = help;
@@ -13,5 +13,5 @@ class createAction{
     }
 }
 
-module.exports = createAction;
+module.exports = CreateAction;
 
