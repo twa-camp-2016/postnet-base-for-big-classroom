@@ -4,7 +4,6 @@
 const request = require('superagent');
 
 function superAgent(router, cmd) {
-  console.log(router);
   request
           .post(`localhost:3000/${router}`)
           .type('form')

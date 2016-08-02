@@ -3,7 +3,7 @@
  */
 'use strict';
 
-const superAgent = require('./superAgent');
+const superAgent = require('../Agent/superAgent');
 
 class InputPostcodeAction {
 
@@ -21,28 +21,5 @@ class InputPostcodeAction {
     return 'inputpostcode';
   }
 }
+
 module.exports = InputPostcodeAction;
-
-/*
- const PostcodeToBarcode = require('./../core/PostcodeToBarcode');
- let postCodeToBarcode = new PostcodeToBarcode();
-
- class InputPostcodeAction {
-
- constructor() {
- this.name = 'inputpostcode';
- this.help = '\n\n\t\t\t邮编转条码\nPlease input your postcode(q to exit):';
- }
-
- doAction(cmd) {
- if (cmd === 'q') {
- return 'postcodeToBarcode';
- }
-
- console.log("The result is:");
- console.log(postCodeToBarcode.transferToBarcode(cmd.trim()));
- return 'inputpostcode';
- }
- }
- module.exports = InputPostcodeAction;
- */
