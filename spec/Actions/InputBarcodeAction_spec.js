@@ -5,7 +5,7 @@
 
 const InputBarcodeAction = require('./../../transformer/actions/InputBarcodeAction');
 
-fdescribe("InputBarcodeAction", function () {
+describe("InputBarcodeAction", function () {
   let inputBarcodeAction = new InputBarcodeAction();
 
   it("input 'q' to 'barcodeToPostcode'", function () {
@@ -20,7 +20,10 @@ fdescribe("InputBarcodeAction", function () {
 
     let input = '| :::|| ::|:| ::||: :|::| :|:|: :|:|: |';
     let expected = 'input barcode';
-    let expectString = '12345';
+    let expectString = {
+      error: '',
+      data: '12345'
+    };
 
     expect(inputBarcodeAction.doAction(input)).toEqual(expected);
     expect(console.log).toHaveBeenCalledWith('The result is:');
@@ -32,7 +35,10 @@ fdescribe("InputBarcodeAction", function () {
 
     let input = '| :::*| ::|:| ::||: :|::| :|:|: :|:|: |';
     let expected = 'input barcode';
-    let expectString = "error input(only '|'':'' 'can be accepted and ' 'is must)";
+    let expectString = {
+      error: "error input(only '|'':'' 'can be accepted and ' 'is must)",
+      data: ''
+    };
 
     expect(inputBarcodeAction.doAction(input)).toEqual(expected);
     expect(console.log).toHaveBeenCalledWith('The result is:');
