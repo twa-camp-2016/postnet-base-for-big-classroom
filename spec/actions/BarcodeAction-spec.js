@@ -10,7 +10,7 @@ describe('barcode',() => {
         spyOn(console,"log");
         let cmd = "| :::|| ::|:| ::||: :|::| :|:|: :|:|: |";
         let barcoderesult = {success:true,data:"12345"};
-        let result = BarcodeAction.doAction(cmd);
+        let result = barcodeAction.doAction(cmd);
         let expectResult = "barcode";
         expect(result).toEqual(expectResult);
         expect(console.log).toHaveBeenCalledWith(barcoderesult.data);
