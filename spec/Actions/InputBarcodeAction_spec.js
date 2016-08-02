@@ -19,7 +19,7 @@ describe("InputBarcodeAction", function () {
     spyOn(console, 'log');
 
     let input = '| :::|| ::|:| ::||: :|::| :|:|: :|:|: |';
-    let expected = 'input barcode';
+    let expected = 'inputbarcode';
     let expectString = {
       error: '',
       data: '12345'
@@ -34,7 +34,7 @@ describe("InputBarcodeAction", function () {
     spyOn(console, 'log');
 
     let input = '| :::*| ::|:| ::||: :|::| :|:|: :|:|: |';
-    let expected = 'input barcode';
+    let expected = 'inputbarcode';
     let expectString = {
       error: "error input(only '|'':'' 'can be accepted and ' 'is must)",
       data: ''

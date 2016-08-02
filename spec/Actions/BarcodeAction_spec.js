@@ -9,7 +9,7 @@ describe("BarcodeAction", function () {
 
   it("input '1' ecpect 'input postcode'", function () {
     let input = '1';
-    let expected = 'input postcode';
+    let expected = 'inputpostcode';
 
     expect(barcodeAction.doAction(input)).toEqual(expected);
   });

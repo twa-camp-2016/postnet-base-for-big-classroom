@@ -2,15 +2,12 @@
  * Created by tong on 16-7-29.
  */
 'use strict';
-
-const BarcodeToPostCode = require('./../core/BarcodeToPostcode');
-let barcodeToPostCode = new BarcodeToPostCode();
-
+const superAgent = require('../client/client');
 
 class InputBarcodeAction {
 
   constructor() {
-    this.name = 'input barcode';
+    this.name = 'inputbarcode';
     this.help = '\n\n\t\t\t条码转邮编\nPlease input your barcode(q to exit):';
   }
 
@@ -18,9 +15,9 @@ class InputBarcodeAction {
     if (cmd === 'q') {
       return 'barcodeToPostcode';
     }
-    console.log("The result is:");
-    console.log(barcodeToPostCode.transferToPostCode(cmd.trim()));
-    return 'input barcode';
+
+    superAgent(this.name, cmd);
+    return 'inputbarcode';
   }
 }
 

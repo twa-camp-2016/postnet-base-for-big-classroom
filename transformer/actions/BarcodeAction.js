@@ -18,7 +18,7 @@ class BarcodeAction {
   doAction(cmd) {
     switch (cmd) {
       case '1':
-        return 'input postcode';
+        return 'inputpostcode';
       case '2':
         return 'init';
       case 'q':

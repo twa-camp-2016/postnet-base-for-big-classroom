@@ -25,7 +25,7 @@ describe("InputPostcodeAction", function () {
       data: "|:::||::|:|::||::|::|:|:|::|:|:|\n" + 'cd is ' + cd
     };
 
-    expect(inputPostcodeAction.doAction(input)).toEqual('input postcode');
+    expect(inputPostcodeAction.doAction(input)).toEqual('inputpostcode');
     expect(console.log).toHaveBeenCalledWith('The result is:');
     expect(console.log).toHaveBeenCalledWith(expected);
   });
