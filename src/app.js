@@ -7,7 +7,16 @@ const Router = require('./Router.js');
 //noinspection JSUnresolvedFunction,NodeJsCodingAssistanceForCoreModules
 const repl = require('repl');
 
-let router=new Router;
+let BarcodeAction = require('./actions/BarcodeAction.js');
+let InitAction = require('./actions/InitAction.js');
+let PostcodeAction = require('./actions/PostcodeAction.js');
+let actions = [
+    new BarcodeAction(),
+    new InitAction(),
+    new PostcodeAction()
+];
+
+let router=new Router(actions);
 
 router.start();
 
