@@ -3,7 +3,7 @@
  */
 'use strict';
 
-const superAgent = require('../client/client');
+const superAgent = require('./superAgent');
 
 class InputPostcodeAction {
 

@@ -2,7 +2,7 @@
  * Created by tong on 16-7-29.
  */
 'use strict';
-const superAgent = require('../client/client');
+const superAgent = require('./superAgent');
 
 class InputBarcodeAction {
 
