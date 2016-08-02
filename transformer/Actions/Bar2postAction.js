@@ -5,7 +5,7 @@
  * Created by hxc on 16-7-29.
  */
 const barcode = require('../core/BarcodeTransformer');
-const request=require('superagent');
+var request=require('sync-request');
 
 function getBody(encoding) {
     if (this.statusCode >= 300) {
@@ -29,19 +29,11 @@ class BarcodeAction {
             case 'q':
                 return 'init';
             default:
-                request
-                    .post('http://localhost:3000/barcodeTransfomer')
-                    .type('form')
-                    .send({cmd:cmd.trim()})
-                    .set('Accept', 'application/json')
-                    .end(function(err,res){
-                        if(err) throw err;
-                        if (res.ok) {
-                            console.log('转换结果: ' + JSON.stringify(res.body));
-                        } else {
-                            console.log('Oh no! error ' + res.text);
-                        }
-                    });
+                var res = request('POST', 'http://localhost:3000/barcodeTransfomer', {
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                    body: `cmd=${cmd}`
+                });
+                console.log(res.getBody().toString());
                 return 'barcode2Post';
         }
     }
