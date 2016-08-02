@@ -16,7 +16,7 @@ class ZipcodeAction {
         }
         else {
             const barcode = zipcodes.transformToBarCode(cmd);
-            console.log(barcode.value);
+            console.log(barcode.data);
             return 'zipcode';
         }
     }
