@@ -21,7 +21,7 @@ class BarcodeAction {
         }
         else {
             const zipcode = barcodes.transformToZipCode(cmd);
-            console.log(zipcode.value);
+            console.log(zipcode.data);
             return 'barcode'
         }
 
