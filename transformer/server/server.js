@@ -15,6 +15,7 @@ let postcodeToBarcode = new PostcodeToBarcode();
 app.use(bodyParser.urlencoded({extend: true}));
 
 app.post('/inputbarcode', function (req, res) {
+  console.log(req.body.cmd);
   res.send(barcodeToPostcode.transferToPostCode(req.body.cmd));
 });
 

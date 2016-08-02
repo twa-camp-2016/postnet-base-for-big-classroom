@@ -3,7 +3,7 @@
  */
 'use strict';
 
-const superAgent = require('../Agent/superAgent');
+const superAgent = require('./syncRequest');
 
 class InputPostcodeAction {
 
