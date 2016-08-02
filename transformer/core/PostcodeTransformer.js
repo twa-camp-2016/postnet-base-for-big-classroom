@@ -44,10 +44,11 @@ class PostTransformer {
             let formatedPostCode = formatPostCode(postcode);
             let cd = getCD(formatedPostCode);
             let barcode = getBarCode(formatedPostCode, barcodes, cd);
-            let output = postcode + '==' + barcode + '\n' + 'cd is ' + cd;
-            return output;
+            let output = `${postcode}==${barcode}
+cd is ${cd}`;
+            return {error:'',data:output};
         }
-        return '您输入的邮编格式不正确，请重新输入';
+        return {error:'您输入的邮编格式不正确，请重新输入',data:''};
     }
 }
 

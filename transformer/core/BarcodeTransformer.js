@@ -60,11 +60,15 @@ class BarcodeTransformer {
             let formatedBarcode = formatBarcode(barcode);
             let postcodeAndCd = getPostCode(formatedBarcode, barcodes);
             if (isLegalCd(postcodeAndCd) && isLegalLength(formatedBarcode)) {
-                output = postcodeAndCd.postCode.slice(0, 5) + '-' + postcodeAndCd.postCode.slice(5, 9);
-                return output;
+                if (postcodeAndCd.postCode.length > 5) {
+                    output = postcodeAndCd.postCode.slice(0, 5) + '-' + postcodeAndCd.postCode.slice(5, 9);
+                    return {error: '', data: output};
+                } else {
+                    return {error: '', data: postcodeAndCd.postCode}
+                }
             }
         }
-        return '您输入的格式不正确';
+        return {error: '您输入的格式不正确', data: ''};
     }
 }
 

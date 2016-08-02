@@ -4,6 +4,7 @@
  */
 
 const post = require('../core/PostcodeTransformer');
+const request=require('superagent');
 
 class post2barAction{
     constructor(name,help){
@@ -11,11 +12,24 @@ class post2barAction{
         this.help=help;
     }
     doAction(cmd){
+
         switch (cmd) {
             case 'q':
                 return 'init';
             default:
-                console.log(post.postToBarcode(cmd));
+                request
+                    .post('http://localhost:3000/postTransformer')
+                    .type('form')
+                    .send({ cmd:cmd})
+                    .set('Accept', 'application/json')
+                    .end(function(err,res){
+                        if(err) throw err;
+                        if (res.ok) {
+                            console.log('转换结果 ' + JSON.stringify(res.body));
+                        } else {
+                            console.log('Oh no! error ' + res.text);
+                        }
+                    });
                 return 'post2Barcode';
         }
     }

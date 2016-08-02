@@ -2,6 +2,7 @@
  * Created by hxc on 16-7-29.
  */
 const repl = require('repl');
+const request=require('superagent');
 
 class InitAction{
     constructor(name,help){

@@ -14,7 +14,10 @@ class Router {
         let result = router.doAction(context.cmd);
         let newRouter = this.actions.find(item => item.name === result);
         this.currentAction = newRouter.name;
-        console.log(newRouter.help);
+       // setTimeout(function(){
+            console.log(newRouter.help);
+        //},100);
+
         done(null);
     }
 

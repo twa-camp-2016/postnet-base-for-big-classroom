@@ -4,51 +4,51 @@
 'use strict';
 let barcode = require('../../transformer/core/BarcodeTransformer');
 
-describe('barcodeTopost',function(){
+describe('barcodeTopost', function () {
     it('should return true', function () {
         let test = '| :|::| :|:|: ||::: :|:|: :||:: :::|| ::|:| ::||: :|::| ||::: |';
         let result = barcode.barcodeToPostCode(test);
-        expect(result).toEqual('45056-1234');
+        expect(result).toEqual({error: '', data: '45056-1234'});
     });
 
-    it('input error length is false',function(){
-        let test= '| :|::| :|:|: ||::: :|:|: :||:: :::|| ::|:| ::||: :|::| |';
-        let result=barcode.barcodeToPostCode(test);
-        expect(result).toEqual('您输入的格式不正确');
+    it('input error length is false', function () {
+        let test = '| :|::| :|:|: ||::: :|:|: :||:: :::|| ::|:| ::||: :|::| |';
+        let result = barcode.barcodeToPostCode(test);
+        expect(result).toEqual({error: '您输入的格式不正确', data: ''});
     });
 
-    it('input error cd is false',function(){
+    it('input error cd is false', function () {
         let test = '| :|::| :|:|: ||::: :|:|: :||:: :::|| ::|:| ::||: :|::| ::||: |';
         let result = barcode.barcodeToPostCode(test);
-        expect(result).toEqual('您输入的格式不正确');
+        expect(result).toEqual({error: '您输入的格式不正确', data: ''});
 
     });
 
-    it('input error middle length is false',function(){
-        let test='| :|::| :|:|: ||::: :|:|: :||:: :::|| ::|:| ::||: |::| ::||: |';
-        let result=barcode.barcodeToPostCode(test);
-        expect(result).toEqual('您输入的格式不正确');
+    it('input error middle length is false', function () {
+        let test = '| :|::| :|:|: ||::: :|:|: :||:: :::|| ::|:| ::||: |::| ::||: |';
+        let result = barcode.barcodeToPostCode(test);
+        expect(result).toEqual({error: '您输入的格式不正确', data: ''});
     });
 
-    it('input error without frame',function(){
-        let test='| :|::| :|:|: ||::: :|:|: :||:: :::|| ::|:| ::||: :|::| ||:::';
-        let result=barcode.barcodeToPostCode(test);
-        expect(result).toEqual('您输入的格式不正确');
+    it('input error without frame', function () {
+        let test = '| :|::| :|:|: ||::: :|:|: :||:: :::|| ::|:| ::||: :|::| ||:::';
+        let result = barcode.barcodeToPostCode(test);
+        expect(result).toEqual({error: '您输入的格式不正确', data: ''});
     });
 
-    it('input error with invalid',function(){
-        let test='| ?|::| :|:|: ||::: :|:|: :||:: :::|| ::|:| ::||: :|::| ||::: |';
-        let result=barcode.barcodeToPostCode(test);
-        expect(result).toEqual('您输入的格式不正确');
+    it('input error with invalid', function () {
+        let test = '| ?|::| :|:|: ||::: :|:|: :||:: :::|| ::|:| ::||: :|::| ||::: |';
+        let result = barcode.barcodeToPostCode(test);
+        expect(result).toEqual({error: '您输入的格式不正确', data: ''});
     });
 
-    it('input error with',function(){
-        let test='| :|::|:|:|: ||::: :|:|: :||:: :::|| ::|:| ::||: :|::| ||::: |';
-        let result=barcode.barcodeToPostCode(test);
-        expect(result).toEqual('您输入的格式不正确');
+    it('input error with', function () {
+        let test = '| :|::|:|:|: ||::: :|:|: :||:: :::|| ::|:| ::||: :|::| ||::: |';
+        let result = barcode.barcodeToPostCode(test);
+        expect(result).toEqual({error: '您输入的格式不正确', data: ''});
     });
 
-    it('input error ',function(){
-        expect(barcode.barcodeToPostCode('')).toEqual('您输入的格式不正确');
+    it('input error ', function () {
+        expect(barcode.barcodeToPostCode('')).toEqual({error: '您输入的格式不正确', data: ''});
     });
 });
