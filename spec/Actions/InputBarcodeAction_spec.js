@@ -8,7 +8,7 @@ const InputBarcodeAction = require('./../../transformer/actions/InputBarcodeActi
 fdescribe("InputBarcodeAction", function () {
   let inputBarcodeAction = new InputBarcodeAction();
 
-  it("input 'q' to exit", function () {
+  it("input 'q' to 'barcodeToPostcode'", function () {
     let input = 'q';
     let expected = 'barcodeToPostcode';
 
