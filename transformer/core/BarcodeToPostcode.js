@@ -48,15 +48,21 @@ class BarcodeToPostCode {
     let legalResult = isLegalBarcode(barcodeString);
 
     if (!legalResult) {
-      return "error input(only '|'':'' 'can be accepted and ' 'is must)";
+      return {
+        error: "error input(only '|'':'' 'can be accepted and ' 'is must)",
+        data: ''
+      };
     }
     let allZipCodes = loadPostCodes();
     let postCodes = getPostNumber(allZipCodes, barcodeString);
 
     if (!(isLegalCheckDigit(postCodes))) {
-      return "it has uncorrect checkdigit";
+      return {
+        error: "it has uncorrect checkdigit",
+        data: ''
+      };
     }
-    return formatPostCode(postCodes);
+    return {error: '', data: formatPostCode(postCodes)};
   }
 }
 

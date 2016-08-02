@@ -42,7 +42,10 @@ class PostcodeToBarcode {
   transferToBarcode(postCodeString) {
     let checkResult = isFormatString(postCodeString);
     if (checkResult !== true) {
-      return checkResult;
+      return {
+        error: checkResult,
+        data: ''
+      };
     }
 
     let allZipCodes = loadPostCodes();
@@ -50,7 +53,10 @@ class PostcodeToBarcode {
     let checkDigit = getCheckDigit(formatedNumbers);
     let formatedBarcode = generateBarcode(allZipCodes, checkDigit, formatedNumbers);
 
-    return formatedBarcode + '\ncd is ' + checkDigit;
+    return {
+      error: '',
+      data: formatedBarcode + '\ncd is ' + checkDigit
+    };
   }
 
 }

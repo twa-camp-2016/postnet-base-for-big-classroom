@@ -16,28 +16,40 @@ describe("transferToPostCode", function () {
 
   it("barcode transfer to postcode", function () {
     let input = "| :::|| ::|:| ::||: :|::| :|:|: :::|| ::|:| ::||: :|::| :|:|: |";
-    let expected = "12345-1234";
+    let expected = {
+      error: '',
+      data: "12345-1234"
+    };
 
     expect(theCall.transferToPostCode(input)).toEqual(expected);
   });
 
   it("barcode transfer to postcode", function () {
     let input = "| :::|| ::|:| ::||: :|::| :|:|: :|:|: |";
-    let expected = "12345";
+    let expected = {
+      error: '',
+      data: "12345"
+    };
 
     expect(theCall.transferToPostCode(input)).toEqual(expected);
   });
-  
+
   it("barcode transfer to postcode", function () {
     let input = "| :::|| ::|:| ::||: :|::| :|:|: :::|| ::|:| ::||: :|::| :*|:: |";
-    let expected = "error input(only '|'':'' 'can be accepted and ' 'is must)";
+    let expected = {
+      error: "error input(only '|'':'' 'can be accepted and ' 'is must)",
+      data: ''
+    };
 
     expect(theCall.transferToPostCode(input)).toEqual(expected);
   });
 
   it("barcode transfer to postcode", function () {
     let input = "| :::|| ::|:| ::||: :|::| :|:|: :::|| ::|:| ::||: :|::| :||:: |";
-    let expected = "it has uncorrect checkdigit";
+    let expected = {
+      error: "it has uncorrect checkdigit",
+      data: ''
+    };
 
     expect(theCall.transferToPostCode(input)).toEqual(expected);
   });
