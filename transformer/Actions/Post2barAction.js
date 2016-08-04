@@ -19,10 +19,10 @@ class post2barAction {
             default:
 
                 var res = request('POST', 'http://localhost:3000/postTransformer', {
-
                     headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                     body: `cmd=${cmd}`
                 });
+
                 console.log(res.getBody().toString());
                 return 'post2Barcode';
         }

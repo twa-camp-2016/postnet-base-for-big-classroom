@@ -1,7 +1,3 @@
-/**
- * Created by hxc on 16-8-1.
- */
-
 const postTransformer=require('../../transformer/core/PostcodeTransformer');
 const bodyParser=require('body-parser');
 const barcodeTransformer=require('../../transformer/core/BarcodeTransformer');

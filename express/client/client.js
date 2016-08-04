@@ -1,6 +1,3 @@
-/**
- * Created by hxc on 16-8-2.
- */
 const request=require('superagent');
 
 request
