@@ -10,6 +10,7 @@ var app = express();
 
 app.use(bodyParser.urlencoded({extend:true}));
 app.post('/init', function (req, res) {
+    console.log(req);
     res.send('Hello');
 });
 app.post('/postTransformer', function(req, res){
