@@ -1,3 +1,9 @@
-/**
- * Created by wt on 16-8-4.
- */
+module.exports = function help(output) {
+    output(`
+++++++++++++Welcome+++++++++
+      1.BarcodeToZIP
+      2.ZipToBarcode
+      q.exit
+++++++++++++++++++++++++++++      
+            `.trim());
+};
