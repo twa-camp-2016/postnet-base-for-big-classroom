@@ -1,35 +1,30 @@
 /**
  * Created by wt on 16-8-1.
  */
-/*global require*/
-const changeToBarcode = require('../src/ZIPToBarcode');
-const req=require('superagent');
-const barcode = new changeToBarcode();
+/*global require,module*/
+const req = require('superagent');
+const help = require('./help.js');
 class ZIPToBarcodeAction {
     constructor() {
         this.name = 'ZIPToBarcode';
-        this.help = `Please input ZIP:`.trim();
     }
 
-    doAction(cmd,output) {
+    doAction(cmd, output, currentName) {
         if (cmd === 'q') {
-            return 'init';
+            currentName.value = 'init';
+            output('Bye~Bye');
+            help(input=>console.log(input));
         }
         else {
-           // let temp;
-            console.log('I\'m converting the barcode: ' + cmd);
             req
-                .get('localhost:5000/ZIP')
-                .end(function (err,res) {
+                .get('localhost:3000/Barcode')
+                .query({code: cmd})
+                .end(function (err, res) {
+                    output('output the transformed barcode:');
                     output(res.text);
+                    output('Please input zip code');
+                    currentName.value = 'ZIPToBarcode';
                 });
-          /*  if(temp.error===undefined){
-                output(temp.data);
-            }
-            else{
-                output(temp.error);
-            }
-*/            return 'ZIPToBarcode';
         }
     }
 }
