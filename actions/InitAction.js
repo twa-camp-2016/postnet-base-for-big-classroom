@@ -23,7 +23,7 @@ class InitAction {
                 break;
             default :
                 currentName.value='init';
-                outputAndQuit('------Input error');
+                outputAndQuit('------Input error,try again--------');
         }
     }
 }

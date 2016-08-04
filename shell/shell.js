@@ -9,9 +9,7 @@ const repl = require('repl');
 let help=require("../router/help");
 
 let router = new Router('init');
-
 help(input=>console.log(input));
-
 repl.start({prompt: '-->', eval: handleInput});
 
 function handleInput(cmd, context, filename, callback) {

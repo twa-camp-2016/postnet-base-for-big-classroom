@@ -19,7 +19,7 @@ class BarcodesAction {
                 break;
             default:
               req
-                  .get('http://localhost:7000/barcode')
+                  .get('http://localhost:3003/barcode')
                   .query({code:cmd})
                   .end(function (err, res) {
                       outputAndQuit(res.text);

@@ -22,7 +22,7 @@ class ZipCodesAction {
                 break;
             default:
                 req
-                    .get('http://localhost:5000/zipCode')
+                    .get('http://localhost:3001/zipCode')
                     .query({code: cmd})
                     .end(function (err, res) {
                         outputAndQuit(res.text);
