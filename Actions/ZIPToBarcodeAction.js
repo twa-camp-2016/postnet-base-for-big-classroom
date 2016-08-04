@@ -3,6 +3,7 @@
  */
 /*global require*/
 const changeToBarcode = require('../src/ZIPToBarcode');
+const req=require('superagent');
 const barcode = new changeToBarcode();
 class ZIPToBarcodeAction {
     constructor() {
@@ -10,14 +11,25 @@ class ZIPToBarcodeAction {
         this.help = `Please input ZIP:`.trim();
     }
 
-    doAction(cmd) {
+    doAction(cmd,output) {
         if (cmd === 'q') {
             return 'init';
         }
         else {
-            console.log('I\'m converting the ZIP code: ' + cmd);
-            console.log(barcode.changeToBarcode(cmd));
-            return 'ZIPToBarcode';
+           // let temp;
+            console.log('I\'m converting the barcode: ' + cmd);
+            req
+                .get('localhost:5000/ZIP')
+                .end(function (err,res) {
+                    output(res.text);
+                });
+          /*  if(temp.error===undefined){
+                output(temp.data);
+            }
+            else{
+                output(temp.error);
+            }
+*/            return 'ZIPToBarcode';
         }
     }
 }

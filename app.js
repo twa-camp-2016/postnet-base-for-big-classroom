@@ -8,9 +8,9 @@ route = new router();
 route.start();
 repl.start({prompt: ' >  ', eval: handleInput});
 function handleInput(cmd, context, filename, callback) {
-    route.handle(cmd.trim());
+    route.handle(cmd.trim(),function (text) {
+        callback(null,text);
+    });
     route.start();
     callback();
 }
-
-

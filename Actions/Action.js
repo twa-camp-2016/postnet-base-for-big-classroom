@@ -18,8 +18,8 @@ class router {
         this.actions = Actions;
     }
 
-    handle(cmd) {
-        this.currentName = this.actions.find(v => v.name === this.currentName).doAction(cmd);
+    handle(cmd,output) {
+        this.currentName = this.actions.find(v => v.name === this.currentName).doAction(cmd,output);
     }
 
     start() {

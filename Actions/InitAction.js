@@ -11,7 +11,7 @@ class InitAction {
                     q - quit`.trim();
     }
 
-    doAction(cmd) {
+    doAction(cmd,output) {
         switch (cmd) {
             case '1':
                 return 'ZIPToBarcode';
@@ -23,7 +23,7 @@ class InitAction {
                 process.exit();
                 break;
             default:
-                console.log("input error,input again");
+                output("input error,input again");
                 break;
         }
     }
