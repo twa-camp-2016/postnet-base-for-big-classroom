@@ -14,19 +14,14 @@ let actions = [
     new InitAction(),
     new ZipCodesAction()
 ];
-
 class Router {
-    constructor() {
-        this.currentActionName = 'init';
+    constructor(status) {
+        this.currentActionName = {value: status};
         this.allActions = actions;
     }
 
     handle(cmd, outputAndExit) {
-        this.currentActionName = this.allActions.find(v=>v.name === this.currentActionName).doAction(cmd, outputAndExit);
-    }
-
-    start() {
-        console.log(this.allActions.find(v=>v.name === this.currentActionName).help);
+        this.allActions.find(v=>v.name === this.currentActionName.value).doAction(cmd, outputAndExit, this.currentActionName);
     }
 }
 

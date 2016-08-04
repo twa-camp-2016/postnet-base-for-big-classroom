@@ -5,40 +5,25 @@
 class InitAction {
     constructor() {
         this.name = 'init';
-        this.help = `
-~~~~~~~~~Welcome~~~~~~~
-1 - barcode to postcode
-2 - postcode to barcode
-3 - exit
-~~~~~~~~~~~~~~~~~~~~~~~`.trim()
     }
 
-    // doAction(cmd){
-    //     switch (cmd) {
-    //         case '1':
-    //             return 'barcode';
-    //         case '2':
-    //             return 'postcode';
-    //         case '3':
-    //             process.exit(0);
-    //             break;
-    //         default :
-    //             console.log('------Input error');
-    //             return 'init';
-    //     }
-    // }
-    doAction(cmd,outputAndQuit){
+    doAction(cmd,outputAndQuit,currentName){
         switch (cmd) {
             case '1':
-                return 'barcode';
+                currentName.value='barcode';
+                outputAndQuit('please input barcode(press q to quit):');
+                break;
             case '2':
-                return 'postcode';
+                currentName.value='postcode';
+                outputAndQuit('please input postcode(press q to quit):');
+                break;
             case '3':
+                outputAndQuit('GoodBye');
                 process.exit(0);
                 break;
             default :
+                currentName.value='init';
                 outputAndQuit('------Input error');
-                return 'init';
         }
     }
 }

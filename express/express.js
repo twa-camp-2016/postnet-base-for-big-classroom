@@ -18,7 +18,7 @@ core.get('/barcode', function (req, res) {
     res.send(barcode.covertToZipCodes(req.query.code));
 });
 
-var server1 = core.listen(7000, function () {
+var server1 = core.listen(3000, function () {
     var host = server1.address().address;
     var port = server1.address().port;
     console.log('http://localhost:' + port);
@@ -28,7 +28,7 @@ core.get('/zipCode', function (req, res) {
     res.send(zipCode.covertToBarcode(req.query.code));
 });
 
-var server2 = core.listen(5000, function () {
+var server2 = core.listen(3300, function () {
     var host = server2.address().address;
     var port = server2.address().port;
     console.log('http://localhost:' + port);
