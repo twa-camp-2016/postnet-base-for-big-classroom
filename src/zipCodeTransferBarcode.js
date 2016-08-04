@@ -73,5 +73,8 @@ class ZipcodeToBarcode {
         let barcode = getCodedZIPCode(zipcode, checkDigit, loadAllBarcodes());
         return new responses(barcode);
     }
+    printInput(){
+        return input;
+    }
 }
 module.exports = ZipcodeToBarcode;

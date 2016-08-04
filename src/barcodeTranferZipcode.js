@@ -98,6 +98,9 @@ class BarcodeToZipcode {
             return new response("error");
         }
     }
+    printInput(){
+        return input;
+    }
 }
 
 module.exports = BarcodeToZipcode;
