@@ -1,23 +1,30 @@
 'use strict';
-const Zipcode = require('../core/Zipcode');
-const zipcodes = new Zipcode();
+const agent = require("superagent");
+let help = require("./help");
 class ZipcodeAction {
     constructor() {
         this.name = 'zipcode';
-        this.help = '请选择：输入邮编或者q退出或者r返回上一层:';
     }
 
-    doAction(cmd) {
-        if (cmd == 'q') {
-            process.exit(0);
+    doAction(cmd,outWord,currentState) {
+        if (cmd === 'q') {
+            outWord("已退出");
+            process.exit();
+
         }
-        else if (cmd == 'r') {
-            return 'init';
+        else if (cmd === 'r') {
+            outWord("返回初始界面");
+            currentState.value = "init";
+            help(outWord);
         }
         else {
-            const barcode = zipcodes.transformToBarCode(cmd);
-            console.log(barcode.data);
-            return 'zipcode';
+            agent.get("http://localhost:3005/zipcode")
+                .query({code:cmd})
+                .end(function(error,response){
+                    outWord(response.text);
+                    console.log("请选择功能:1.邮编转编码 2.编码转邮编 3.退出");
+                    currentState.value = "init";
+                })
         }
     }
 }

@@ -2,27 +2,33 @@
  * Created by wangqi on 16-8-1.
  */
 'use strict';
-const Barcode = require('../core/Barcode');
-const barcodes = new Barcode();
+// const Barcode = require('../core/Barcode');
+// const barcodes = new Barcode();
+let help = require("./help");
+const agent = require("superagent");
 class BarcodeAction {
     constructor() {
         this.name = 'barcode';
-        this.help = '请选择：输入条形码或者q退出或者r返回上一层:';
     }
 
-    doAction(cmd) {
-        if (cmd == 'q') {
-            process.exit(0);
-
+    doAction(cmd,outWord,currentState) {
+        if (cmd === 'q') {
+            outWord("已退出");
+            process.exit();
         }
-        else if (cmd == 'r') {
-            return 'init';
-
+        else if (cmd === 'r') {
+            outWord("返回初始界面");
+            currentState.value = "init";
+            help(outWord);
         }
         else {
-            const zipcode = barcodes.transformToZipCode(cmd);
-            console.log(zipcode.data);
-            return 'barcode'
+            agent.get('http://localhost:3006/barcode')
+                 .query({code:cmd})
+                 .end(function (error, response) {
+                     outWord(response.text);
+                     console.log("请选择功能:1.邮编转编码 2.编码转邮编 3.退出");
+                     currentState.value = "init"
+                    });
         }
 
     }

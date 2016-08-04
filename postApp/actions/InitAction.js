@@ -3,27 +3,31 @@
  */
 
 'use strict';
-const postAppCore = require('../core/Barcode');
+let help = require("./help");
 class InitAction {
     constructor() {
         this.name = 'init';
-        this.help = '请选择功能:1.邮编转编码 2.编码转邮编 3.退出';
     }
 
-    doAction(cmd) {
+    doAction(cmd,outWord,currentState) {
         switch (cmd) {
             case'1':
-                return 'zipcode';
+                currentState.value = "zipcode";
+                outWord("请选择：输入邮编或者q退出或者r返回上一层:");
+                break;
             case'2':
-                return 'barcode';
+                currentState.value = "barcode";
+                outWord("请选择：输入条形码或者q退出或者r返回上一层:")
+                break;
             case'3':
-                console.log('bye');
-                // replServer.close();
-                process.exit(0);
+                outWord("byebye");
+                process.exit();
+                break;
             default:
-                console.log('error');
-                return 'init';
-
+                outWord('Incorrect menu options please input again.');
+                currentState.value = "init";
+                help(outWord);
+                break;
         }
     }
 }

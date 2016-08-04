@@ -4,15 +4,17 @@
 'use strict';
 const repl = require('repl');
 const Router = require('./router/Router');
-const Shell=require('./shell/Shell');
-const InitAction = require('./actions/InitAction');
-const BarcodeAction = require('./actions/BarcodeAction');
-const ZipcodeAction = require('./actions/ZipcodeAction');
-let actions = [
-    new InitAction(),
-    new BarcodeAction(),
-    new ZipcodeAction()
-];
-const router = new Router(actions);
-const shell = new Shell(router, repl);
-shell.start();
+let help = require("./actions/help");
+
+const router = new Router('init');
+help(outWord => console.log(outWord));
+    repl.start({
+        prompt: '->',
+        eval: (cmd, context, filename, callback) => {
+            router.handle(cmd.trim(),function(text) {
+                callback(null, text);
+            })
+        }
+    });
+
+

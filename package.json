@@ -12,7 +12,8 @@
     "jasmine": "^2.4.1"
   },
   "devDependencies": {
-    "jasmine": "^2.4.1"
+    "jasmine": "^2.4.1",
+    "superagent": "^2.1.0"
   },
   "repository": {
     "type": "git",
