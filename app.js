@@ -3,14 +3,16 @@
  */
 /* global require,repl*/
 const repl = require('repl');
-const router = require('./Actions/Action.js');
-route = new router();
-route.start();
-repl.start({prompt: ' >  ', eval: handleInput});
+const Router = require('./Actions/Action.js');
+const  help=require('./Actions/help.js');
+let route = new Router('init');
+help(input=>console.log(input));
+repl.start({prompt: ' ->', eval: handleInput});
 function handleInput(cmd, context, filename, callback) {
     route.handle(cmd.trim(),function (text) {
         callback(null,text);
     });
-    route.start();
-    callback();
+    //callback();
 }
+
+
