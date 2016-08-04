@@ -2,25 +2,22 @@
  * Created by wt on 16-8-1.
  */
 class InitAction {
-    constructor() {
-        this.name = 'init';
-        this.help = `
-    ++++++++++++++++++++    Welcome     ++++++++++++++++++++
-                    1 - ZIPToBarcode
-                    2 - barcodeToZIP
-                    q - quit`.trim();
+    constructor(){
+        this.name='init';
     }
-
-    doAction(cmd,output) {
+    doAction(cmd,output,currentName) {
         switch (cmd) {
             case '1':
-                return 'ZIPToBarcode';
+                currentName.value='BarcodeToZIP';
+                output('Please input barcode');
                 break;
             case '2':
-                return 'BarcodeToZIP';
+                currentName.value='ZIPToBarcode';
+                output('Please input zip code');
                 break;
             case 'q':
                 process.exit();
+                output('Goodbye');
                 break;
             default:
                 output("input error,input again");
