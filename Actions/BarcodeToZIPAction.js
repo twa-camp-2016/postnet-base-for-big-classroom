@@ -3,31 +3,27 @@
  */
 /*global require,module*/
 //const changeToZIP = require('../src/BarcodeToZIP');
+let help=require('./help.js');
 let req=require('superagent');
 class BarcodeToZIPAction {
     constructor() {
         this.name = 'BarcodeToZIP';
-        this.help = 'Please input Barcode:'.trim();
     }
-    doAction(cmd,output) {
+    doAction(cmd,output,currentName) {
         if (cmd === 'q') {
-            return 'init';
+            currentName.value='init';
+            output('Bye~Bye');
+            help(input=>console.log(input));
         }
         else {
-            console.log('I\'m converting the barcode: ' + cmd);
-            let temp;
-            req.get('localhost:3000/Barode')
+            req.get('localhost:5000/ZIP')
                 .query({code:cmd})
                 .end(function (err,res) {
+                    output('The transformed zip is:');
                     output(res.text);
+                    output('Please input barcode:');
+                    currentName.value='BarcodeToZIP';
                 });
-           /* if(temp.error===undefined){
-               output(temp);
-            }
-            else{
-               output(temp.error);
-            }*/
-            return 'BarcodeToZIP'
         }
     }
 }
