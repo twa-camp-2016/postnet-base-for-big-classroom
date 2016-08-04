@@ -21,8 +21,8 @@ class Router {
         this.allActions = actions;
     }
 
-    handle(cmd) {
-        this.currentActionName = this.allActions.find(v=>v.name === this.currentActionName).doAction(cmd);
+    handle(cmd, outputAndExit) {
+        this.currentActionName = this.allActions.find(v=>v.name === this.currentActionName).doAction(cmd, outputAndExit);
     }
 
     start() {

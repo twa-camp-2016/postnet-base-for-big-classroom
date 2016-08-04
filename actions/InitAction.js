@@ -13,7 +13,21 @@ class InitAction {
 ~~~~~~~~~~~~~~~~~~~~~~~`.trim()
     }
 
-    doAction(cmd){
+    // doAction(cmd){
+    //     switch (cmd) {
+    //         case '1':
+    //             return 'barcode';
+    //         case '2':
+    //             return 'postcode';
+    //         case '3':
+    //             process.exit(0);
+    //             break;
+    //         default :
+    //             console.log('------Input error');
+    //             return 'init';
+    //     }
+    // }
+    doAction(cmd,outputAndQuit){
         switch (cmd) {
             case '1':
                 return 'barcode';
@@ -23,10 +37,10 @@ class InitAction {
                 process.exit(0);
                 break;
             default :
-                console.log('Input error');
+                outputAndQuit('------Input error');
                 return 'init';
         }
     }
 }
 
-module.exports=InitAction;
+module.exports = InitAction;

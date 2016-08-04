@@ -59,7 +59,7 @@ class ZipCodeToBarcode {
         if (!(checkBit(zipCodes) && isInvalidZipCodes(zipCodes))) {
             return {
                 error: "input wrong!!",
-                data: undefined
+                barcode: undefined
             }
         }
         let codeList = getCodeLists();
@@ -69,7 +69,7 @@ class ZipCodeToBarcode {
         let newBarCodes = matchBarCodes(newZipCodes, codeList);
         return {
             error: undefined,
-            data: addBarFrame(newBarCodes)
+            barcode: addBarFrame(newBarCodes)
         };
     }
 }

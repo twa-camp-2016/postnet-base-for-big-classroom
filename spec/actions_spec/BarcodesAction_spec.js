@@ -24,7 +24,6 @@ describe("barcode", function () {
         expect(result).toEqual(expected);
     });
 
-
     it("should return error", function () {
         let cmd = "| ::|:| ::||: :|::| :|:|: :||::invalid char |";
         let expected1 = 'barcode';

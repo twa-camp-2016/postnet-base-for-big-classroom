@@ -72,7 +72,7 @@ class BarcodeToZipCode {
         if (!(IsLegal(barCodes) && isHaveBarFrame(barCodes))) {
             return {
                 error: 'input wrong!!',
-                data: undefined
+                postcode: undefined
             }
         }
 
@@ -85,13 +85,13 @@ class BarcodeToZipCode {
         if (!checkCd(allCodes)) {
             return {
                 error: "the check digit is wrong!!!",
-                data: undefined
+                postcode: undefined
             }
         } else {
             zipCodes = deleteCheckDigit(allCodes);
             return {
                 error: undefined,
-                data: finalFormat(zipCodes)
+                postcode: finalFormat(zipCodes)
             };
         }
     }
