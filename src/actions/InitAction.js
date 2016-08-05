@@ -20,12 +20,12 @@ class InitAction {
         switch (cmd) {
             case '1':
                 return 'postcode';
-            case  '2':
+            case '2':
                 return 'barcode';
             case 'q':
                 process.exit(0);
             default:
-                console.log('无效的输入！请重新选择-V_V-\n');
+                console.log('无效的输入！请重新选择-V_V-');
                 return 'init';
         }
     }

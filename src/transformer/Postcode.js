@@ -13,7 +13,8 @@ function loadTable() {
 }
 
 function isLegalZipcode(zipcode) {
-    return (zipcode.length === 5 || zipcode.length === 9 || zipcode.length === 10);
+    let reg = /^\d{5}(-?\d{4})?$/;
+    return (reg.test(zipcode)) ? true : false;
 }
 
 function getCheckcode(zipcode) {

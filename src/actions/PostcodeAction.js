@@ -16,7 +16,7 @@ class PostAction {
         if (cmd === 'b') {
             return 'init';
         } else {
-            console.log('\nthe barcode is ' + PostcodeItem.zipcodeTraBarcode(cmd) + '\n');
+            console.log('the barcode is ' + PostcodeItem.zipcodeTraBarcode(cmd));
             return 'postcode';
         }
     }
