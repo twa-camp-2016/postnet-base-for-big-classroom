@@ -3,14 +3,14 @@
  * Created by tong on 16-7-28.
  */
 
-const barcodeToPostcode = require("../../transformer/core/BarcodeToPostcode.js");
+const BarcodeToPostcode = require("../../transformer/core/BarcodeToPostcode.js");
 
 //barcode to postcode
 describe("transferToPostCode", function () {
   let theCall;
 
   beforeEach(()=> {
-    theCall = new barcodeToPostcode();
+    theCall = new BarcodeToPostcode();
   });
 
 

@@ -4,8 +4,9 @@
 function isFormatString(postCodeString) {
   let result = /^\d{5}$|^\d{9}$|^\d{5}-\d{4}$/.test(postCodeString);
   if (!result) {
-    result = "the letter or the length of number is illegal(the length should be 5/9/10 contain'-')";
+    result = "the letter or the length of number is illegal(the length should be 5/9/10 contain' - ')";
   }
+
   return result;
 }
 
@@ -55,7 +56,7 @@ class PostcodeToBarcode {
 
     return {
       error: '',
-      data: formatedBarcode + '\ncd is ' + checkDigit
+      data: formatedBarcode + ' cd is ' + checkDigit
     };
   }
 

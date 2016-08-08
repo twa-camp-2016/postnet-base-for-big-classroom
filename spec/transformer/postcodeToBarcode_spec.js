@@ -2,14 +2,14 @@
 /**
  * Created by tong on 16-7-28.
  */
-const postcodeToBarcode = require("../../transformer/core/PostcodeToBarcode.js");
+const PostcodeToBarcode = require("../../transformer/core/PostcodeToBarcode.js");
 
 //postcode to barcode
 describe("transferToBarcode", function () {
   let theCall;
 
   beforeEach(()=> {
-    theCall = new postcodeToBarcode();
+    theCall = new PostcodeToBarcode();
   });
 
   it("postCode transformer to barcode", function () {
@@ -17,7 +17,7 @@ describe("transferToBarcode", function () {
     let check = 5;
     let expected = {
       error: '',
-      data: "|:::||::|:|::||::|::|:|:|::::||::|:|::||::|::|:|:|:|\n" + "cd is " + check
+      data: "|:::||::|:|::||::|::|:|:|::::||::|:|::||::|::|:|:|:|" + " cd is " + check
     };
 
     expect(theCall.transferToBarcode(input)).toEqual(expected);
@@ -27,7 +27,7 @@ describe("transferToBarcode", function () {
     let input = "123451234";
     let expected = {
       error: '',
-      data: "|:::||::|:|::||::|::|:|:|::::||::|:|::||::|::|:|:|:|\n" + "cd is 5"
+      data: "|:::||::|:|::||::|::|:|:|::::||::|:|::||::|::|:|:|:|" + " cd is 5"
     };
 
     expect(theCall.transferToBarcode(input)).toEqual(expected);
@@ -38,7 +38,7 @@ describe("transferToBarcode", function () {
     let check = 5;
     let expected = {
       error: '',
-      data: "|:::||::|:|::||::|::|:|:|::|:|:|\n" + "cd is " + check
+      data: "|:::||::|:|::||::|::|:|:|::|:|:|" + " cd is " + check
     };
 
     expect(theCall.transferToBarcode(input)).toEqual(expected);
@@ -47,7 +47,7 @@ describe("transferToBarcode", function () {
   it("check the number format_length", function () {
     let input = "1234";
     let expected = {
-      error: "the letter or the length of number is illegal(the length should be 5/9/10 contain'-')",
+      error: "the letter or the length of number is illegal(the length should be 5/9/10 contain' - ')",
       data: ''
     };
 
@@ -57,7 +57,7 @@ describe("transferToBarcode", function () {
   it("check the number format_letter", function () {
     let input = "1234a1234";
     let expected = {
-      error: "the letter or the length of number is illegal(the length should be 5/9/10 contain'-')",
+      error: "the letter or the length of number is illegal(the length should be 5/9/10 contain' - ')",
       data: ''
     };
 
@@ -67,7 +67,7 @@ describe("transferToBarcode", function () {
   it("check the number format_position", function () {
     let input = "123-41234";
     let expected = {
-      error: "the letter or the length of number is illegal(the length should be 5/9/10 contain'-')",
+      error: "the letter or the length of number is illegal(the length should be 5/9/10 contain' - ')",
       data: ''
     };
 
@@ -77,7 +77,7 @@ describe("transferToBarcode", function () {
   it("check the number format_position", function () {
     let input = "";
     let expected = {
-      error: "the letter or the length of number is illegal(the length should be 5/9/10 contain'-')",
+      error: "the letter or the length of number is illegal(the length should be 5/9/10 contain' - ')",
       data: ''
     };
 

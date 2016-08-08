@@ -20,13 +20,9 @@ describe("InputBarcodeAction", function () {
 
     let input = '| :::|| ::|:| ::||: :|::| :|:|: :|:|: |';
     let expected = 'inputbarcode';
-    let expectString = {
-      error: '',
-      data: '12345'
-    };
+    let expectString = '{"error":"","data":"12345"}';
 
     expect(inputBarcodeAction.doAction(input)).toEqual(expected);
-    expect(console.log).toHaveBeenCalledWith('The result is:');
     expect(console.log).toHaveBeenCalledWith(expectString);
   });
 
@@ -35,13 +31,9 @@ describe("InputBarcodeAction", function () {
 
     let input = '| :::*| ::|:| ::||: :|::| :|:|: :|:|: |';
     let expected = 'inputbarcode';
-    let expectString = {
-      error: "error input(only '|'':'' 'can be accepted and ' 'is must)",
-      data: ''
-    };
+    let expectString = `{"error":"error input(only '|'':'' 'can be accepted and ' 'is must)","data":""}`;
 
     expect(inputBarcodeAction.doAction(input)).toEqual(expected);
-    expect(console.log).toHaveBeenCalledWith('The result is:');
     expect(console.log).toHaveBeenCalledWith(expectString);
   });
 });

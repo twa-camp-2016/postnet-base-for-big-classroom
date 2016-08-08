@@ -2,7 +2,7 @@
  * Created by tong on 16-7-29.
  */
 'use strict';
-const superAgent = require('./syncRequest');
+const syncRequest = require('../request/syncRequest');
 
 class InputBarcodeAction {
 
@@ -16,7 +16,7 @@ class InputBarcodeAction {
       return 'barcodeToPostcode';
     }
 
-    superAgent(this.name, cmd);
+    syncRequest(this.name, cmd);
     return 'inputbarcode';
   }
 }

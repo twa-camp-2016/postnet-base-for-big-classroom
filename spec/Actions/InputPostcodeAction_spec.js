@@ -20,13 +20,19 @@ describe("InputPostcodeAction", function () {
 
     let input = '12345';
     let cd = 5;
-    let expected = {
-      error: '',
-      data: "|:::||::|:|::||::|::|:|:|::|:|:|\n" + 'cd is ' + cd
-    };
+    let expected = '{"error":"","data":"|:::||::|:|::||::|::|:|:|::|:|:| cd is 5"}';
 
     expect(inputPostcodeAction.doAction(input)).toEqual('inputpostcode');
-    expect(console.log).toHaveBeenCalledWith('The result is:');
+    expect(console.log).toHaveBeenCalledWith(expected);
+  });
+
+  it("input the postcode return the wrong info", function(){
+    spyOn(console, 'log');
+
+    let input = '1234578906';
+    let expected = `{"error":"the letter or the length of number is illegal(the length should be 5/9/10 contain' - ')","data":""}`;
+
+    expect(inputPostcodeAction.doAction(input)).toEqual('inputpostcode');
     expect(console.log).toHaveBeenCalledWith(expected);
   });
 });

@@ -49,7 +49,7 @@ class BarcodeToPostCode {
 
     if (!legalResult) {
       return {
-        error: "error input(only '|'':'' 'can be accepted and ' 'is must)",
+        error: `error input(only '|'':'' 'can be accepted and ' 'is must)`,
         data: ''
       };
     }
@@ -58,11 +58,14 @@ class BarcodeToPostCode {
 
     if (!(isLegalCheckDigit(postCodes))) {
       return {
-        error: "it has uncorrect checkdigit",
+        error: 'it has uncorrect checkdigit',
         data: ''
       };
     }
-    return {error: '', data: formatPostCode(postCodes)};
+    return {
+      error: '',
+      data: formatPostCode(postCodes)
+    };
   }
 }
 
