@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<p lang="en" xmlns="http://www.w3.org/1999/html">
+    <head>
+        <meta charset="UTF-8">
+        <title>postNet</title>
+        <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="bootstrap/dist/css/bootstrap-theme.css">
+        <link rel="stylesheet" href="bootstrap/dist/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
+        <script src="jquery/dist/jquery.min.js"></script>
+        <script src="core_express.js"></script>
+    </head>
+    <body>
+    <div class="container" style="border: groove">
+        <header class="text-center">
+            <h2>POST-NET</h2>
+        </header>
+        <div class="text-center">
+            <form class="form-horizontal">
+                <div>
+                    <label class="col-lg-5 text-right" for="inputCode">input code</label>
+                    <input class="col-lg-3 text-left" type="text" id="inputCode"
+                           placeholder="Please input code here"><br><br>
+                </div>
+                <div><p class="text-danger"></p></div>
+<div>
+    <label class="col-lg-5 text-right" for="result">Result</label>
+    <p class="col-lg-3 text-left" id="result"></p><br>
+</div>
+<br>
+<div>
+    <input type="radio" value="barcode" name="select" checked="checked" id="barcode">
+    <label for="barcode">Barcode to ZipCode</label>
+    <input type="radio" value="zipCode" name="select" id="zipCode">
+    <label for="zipCode">ZipCode to Barcode</label>
+    <br><br>
+    <button type="button" class="btn">OK</button>
+    <br><br>
+</div>
+</form>
+</div>
+
+<div class="text-center">
+    <table class="table table-responsive" id="table1">
+        <caption class="text-center"><h4>History</h4></caption>
+        <thead>
+            <td>Code</td>
+            <td>Result</td>
+        </thead>
+    </table>
+</div>
+</body>
+</html>
