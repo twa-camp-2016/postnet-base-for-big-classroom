@@ -12,5 +12,8 @@
     "express": "^4.14.0",
     "jasmine": "^2.4.1",
     "superagent": "^2.1.0"
+  },
+  "devDependencies": {
+    "superagent": "^2.1.0"
   }
 }
