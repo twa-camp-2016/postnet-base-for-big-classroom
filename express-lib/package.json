@@ -1,18 +1,14 @@
 {
-  "name": "110-simple-base",
+  "name": "express-lib",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jasmine"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "jasmine": "^2.4.1",
-    "superagent": "^2.1.0"
-  },
   "devDependencies": {
-    "jasmine": "^2.4.1"
+    "express": "^4.14.0"
   }
 }

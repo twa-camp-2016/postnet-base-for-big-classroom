@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Postnet</title>
+    <script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            font-size: 16px;
+            font-family: "宋体";
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .body {
+            width: 900px;
+            border: 1px solid #333;
+            margin: 30px auto;
+        }
+
+        header {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .middle {
+            width: 800px;
+            margin: 30px auto;
+            padding: 5px;
+        }
+
+        .middle li {
+            height: 60px;
+            line-height: 60px;
+        }
+
+        .text {
+            display: block;
+            float: left;
+            width: 200px;
+        }
+
+        #inputcode, #outputcode {
+            width: 480px;
+            height: 30px;
+        }
+
+        #outputcode {
+            border: none;
+        }
+
+        #error {
+            margin-left: 100px;
+            height: 30px;
+            color: #ca3a11;
+            width: 480px;
+            border: none;
+        }
+
+        .choose label {
+            margin-left: 120px;
+        }
+
+        #subm {
+            border-radius: 5px;
+            width: 45px;
+            height: 35px;
+            margin-left: 330px;
+        }
+
+        #footer {
+            width: 800px;
+            margin: 50px auto;
+        }
+
+        #footer h4 {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        #footer li, p {
+            display: inline-block;
+            height: 50px;
+            line-height: 50px;
+            width: 350px;
+        }
+
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            cancel();
+            $('#subm').click(function () {
+                let inputcode = $("#inputcode").val();
+                let radio = $(".choose input[name='tag']:checked").val();
+                $.get("/" + radio + '?code=' + inputcode)
+                        .done(function (data) {
+                            result(inputcode,data);
+                        });
+            });
+        });
+        function result(inputcode,data) {
+            let outputcode = $("#outputcode").val();
+            if (data) {
+                $("#error").val("");
+                $("#outputcode").val(data);
+            } else {
+                $("#outputcode").val("");
+                $("#error").val("Error message should be displayed here")
+            }
+            history(inputcode);
+        }
+        function cancel() {
+            $("#inputcode").click(function () {
+                $("#error").val('');
+                $("#outputcode").val('');
+            });
+        }
+        function history(inputcode) {
+            let outputcode = $("#outputcode").val();
+            $(".history").prepend('<li>' + inputcode + '</li><li>' + outputcode + '</li><hr>');
+            let length = $(".history li").length / 2 - 1;
+            if (length > 4) {
+                $(".history li")[11].remove();
+                $(".history li")[10].remove();
+                $(".history hr")[4].remove();
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="body">
+    <header>POST-NET</header>
+    <ul class="middle">
+        <li>
+            <label class="text">Input code:</label>
+            <input id="inputcode" type="text" placeholder="Please input code here" name="inputcode"/>
+        </li>
+        <li><input id="error" type="text" name="error"/></li>
+        <li>
+            <label class="text">Result:</label>
+            <input type="text" id="outputcode" name="outputcode"/>
+        </li>
+        <li class="choose">
+            <label><input type="radio" name="tag" value="barcode" checked/>Zipcode to Barcode</label>
+            <label><input type="radio" name="tag" value="postcode"/>Barcode to Zipcode</label>
+        </li>
+        <li><input id="subm" type="submit" value="OK" name="course" onclick=""/></li>
+    </ul>
+    <div id="pre">hakdjahsdjkqiqhsdkvbvlieruglwjfqwekfjsdvbvebirqgwlisdbqbkvbnbvm.agdgyaudjahgfuydsfgdsuyfgsdfyudsufgd</div>
+    <div id="footer">
+        <h4>History</h4>
+        <hr>
+        <p>Code</p>
+        <p>Result</p>
+        <hr>
+        <ul class="history">
+        </ul>
+    </div>
+</div>
+</body>
+</html>
+
