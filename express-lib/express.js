@@ -2,30 +2,22 @@
  * Created by zhangyiru on 16-8-3.
  */
 var express = require('express');
-const toBar = require("./core/postCodeToBarCode");
 const toPost = require("./core/barCodeToPostCode");
-let Bar = new toBar();
-let Post = new toPost();
+const toBar = require("./core/postCodeToBarCode");
+let barcode = new toBar();
+let postcode = new toPost();
 var app = express();
+app.use(express.static('public'));
 
 app.get('/barcode', function (req, res) {
-    res.send(Bar.zipCodeToBarCode(req.query.code));
+    res.send(barcode.zipCodeToBarCode(req.query.code));
+});
+app.get('/postcode', function (req, res) {
+    res.send(postcode.barCodeToZipCode(req.query.code));
 });
 
 var server = app.listen(3006, function () {
     var host = server.address().address;
     var port = server.address().port;
-
-    console.log('Example app listening at http://%s:%s', host, port);
-});
-
-app.get('/postcode', function (req, res) {
-    res.send(Post.barCodeToZipCode(req.query.code));
-});
-
-var server1 = app.listen(3008, function () {
-    var host = server1.address().address;
-    var port = server1.address().port;
-
     console.log('Example app listening at http://%s:%s', host, port);
 });

@@ -73,7 +73,7 @@ function getBarCode(bar) {
     let string = bar.reduce((cur, item)=> {
         return cur + item;
     });
-    return "| " + string + "|";
+    return '| ' + string + '|';
 }
 
 module.exports = ToBarCode;
