@@ -1,5 +1,9 @@
+###网页运行为：
+1. 在终端进入express路径，打开服务器端口：node express_demo.js
+2. 在浏览器网址输入：localhost://3002/show-code.html
+3. 即可输入相应的编码进行转换。
 
-### 运行为：
+### 终端运行为：
 1. 打开终端进入postApp目录下
 2. 然后输入node app.js运行， 根据提示进行输入
 3. 这是在终端来实现pos机功能
