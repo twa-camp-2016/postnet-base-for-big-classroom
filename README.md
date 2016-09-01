@@ -4,12 +4,12 @@
 ###JS做前端开发
 ###node.js做后台开发。
 
-1.未使用面向对象技术
-2.使用命令node transformer/server.js开启服务器
-3.新打开一个终端，使用命令node transformer/app.js运行程序，命令行显示
-4.根据提示执行该程序
-5.克隆到本地仓库，应县安装依赖(npm install)
-6.npm test 运行jasmine进行测试
+    1.未使用面向对象技术
+    2.使用命令node transformer/server.js开启服务器
+    3.新打开一个终端，使用命令node transformer/app.js运行程序，命令行显示
+    4.根据提示执行该程序
+    5.克隆到本地仓库，应县安装依赖(npm install)
+    6.npm test 运行jasmine进行测试
 ##Notice:在测试时应打开服务器
 
 ### 说明
