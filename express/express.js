@@ -5,8 +5,8 @@
  * Created by lucky on 16-8-2.
  */
 'use strict';
-const BarcodeToZipCode = require("./core/BarcodeToZipCode");
-const ZipCodeToBarcode = require("./core/ZipCodeToBarCode");
+const BarcodeToZipCode = require("../core/BarcodeToZipCode");
+const ZipCodeToBarcode = require("../core/ZipCodeToBarCode");
 
 const barcode = new BarcodeToZipCode();
 const zipCode = new ZipCodeToBarcode();

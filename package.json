@@ -1,0 +1,26 @@
+{
+  "name": "110-simple-base",
+  "version": "1.0.0",
+  "description": "1. fork本repo到自己的github 1. clone到本地 1. 直接运行 npm install 就可以安装所需的库 1. 复制已经写好postnet代码到当前repo并确保测试通过 1. pull request 1. 用16字方针重构代码到面向对象",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0",
+    "jasmine": "^2.4.1"
+  },
+  "devDependencies": {
+    "superagent": "^2.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wanpanlucky/postnet-base-for-big-classroom.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wanpanlucky/postnet-base-for-big-classroom/issues"
+  },
+  "homepage": "https://github.com/wanpanlucky/postnet-base-for-big-classroom#readme"
+}
